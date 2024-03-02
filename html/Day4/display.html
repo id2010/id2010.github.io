@@ -1,0 +1,64 @@
+<!--display.html-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /*tag selector*/
+        div {
+            border: solid;
+            width: 100px;
+            height: 100px;
+        }
+
+        /*class selector*/
+        p.inline-block {
+            display: inline-block;
+            border: solid red;
+            width: 100px;
+            height: 100px;
+        }
+
+        span {
+            border: solid blue;
+            /*cannot change width and height, use font-size*/
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--    ctrl /-->
+    <!--    block, inline-block, inline-->
+
+    <ul>block
+        <li>width: width of the page</li>
+        <li>height: 0</li>
+        <li>we can change width and height</li>
+        <li>cannot put on same line</li>
+    </ul>
+
+    <div></div>
+    <div></div>
+
+    <!--    div.inline-block*2-->
+    <ul>inline block
+        <li>width: 0</li>
+        <li>height: 0</li>
+        <li>can put on same line</li>
+    </ul>
+
+    <p class="inline-block"></p>
+    <p class="inline-block"></p>
+
+    <ul>inline
+        <il>width: 0</il>
+        <il>height: font size</il>
+        <il>cannot change width and height by using width and height</il>
+    </ul>
+    <span>text text&nbsp;</span>
+    <span>text text&nbsp;</span>
+
+</body></html>

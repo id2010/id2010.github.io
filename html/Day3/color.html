@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color</title>
+    <style>
+        /*        id names can not just contain numbers*/
+        div#box1 {
+            background-color: red;
+            border: solid;
+            height: 100px;
+            width: 100px;
+        }
+
+        /*can also have no div so its just the id*/
+        /*        hex values range 0-9 and a-f and hex is seperated into two numbers, representing RGB*/
+        div#box2 {
+            background-color: #0000ff;
+            border: solid;
+            height: 100px;
+            width: 100px;
+        }
+
+        /*RGB css function*/
+        /*        to change color faster (in hex), hover mouse over value and press ctrl + e*/
+        div#box3 {
+            background-color: rgb(10, 200, 10);
+            border: solid;
+            height: 100px;
+            width: 100px;
+        }
+
+        div#box4 {
+            background-color: rgba(10, 10, 10, 0.5);
+            border: solid;
+            height: 100px;
+            width: 100px;
+        }
+
+        body {
+            /*            url stands for universal resource location*/
+            background-image: url(https://images.pexels.com/photos/36478/amazing-beautiful-beauty-blue.jpg?auto=compress&cs=tinysrgb&w=600);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <br>
+    <div id="box2"></div>
+    <br>
+    <div id="box3"></div>
+    <br>
+    <div id="box4"></div>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banner Page Recreation</title>
+    <script src="https://kit.fontawesome.com/0fdcef92f9.js" crossorigin="anonymous"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+            background: url(https://images.pexels.com/photos/552789/pexels-photo-552789.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) repeat center center fixed
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        div#outer {
+            border: solid 0px black;
+            width: 400px;
+            height: 450px;
+            box-shadow: 0px 0px 12px black;
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        p#login {
+            text-align: center;
+            color: white;
+            font-size: 40px;
+            font-family: sans-serif;
+            font-weight: 1000;
+        }
+
+        input.a {
+            border: solid 3px rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            width: 350px;
+            height: 45px;
+            background-color: rgba(0, 0, 0, 0);
+            font-size: 20px;
+            font-family: sans-serif;
+            text-indent: 20px;
+            color: white;
+        }
+
+        input.a::placeholder {
+            color: white;
+        }
+
+        button {
+            border: solid 3px rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            width: 350px;
+            height: 45px;
+            background-color: white;
+            font-size: 20px;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        a {
+            color: white;
+            font-family: sans-serif;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        i {
+            margin-left: -40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <p id="login">Login</p>
+        <input class="a" type="username" placeholder="Username">
+        <i class="fa-solid fa-user"></i>
+        <br>
+        <br>
+        <input class="a" type="password" placeholder="Password">
+        <i class="fa-solid fa-lock"></i>
+        <br>
+        <br>
+        <input type="checkbox"> Remember Me
+        <br>
+        <br>
+        <button>Login</button>
+        <p>
+            Don't have an account ? <a href="google.com">Register</a>
+        </p>
+    </div>
+</body></html>
