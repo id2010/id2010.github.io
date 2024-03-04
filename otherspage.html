@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>All</title>
+    <title>others page</title>
     <style>
         body {
             margin: 20;
@@ -23,6 +22,8 @@
             padding: 5px;
             border: solid 5px rgba(255, 180, 150, 0.5);
             border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         p {
@@ -48,40 +49,15 @@
             text-shadow: 0px 0px 1px pink;
         }
 
-        button#htmlpage {
-            border: solid 6px rgba(255, 0, 0, 0.5);
+        button.back {
+            border: solid 3px rgba(0, 0, 0, 0.5);
             border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            font-size: 40px;
+            font-size: 20px;
             width: 500px;
+            height: 40px;
             margin-left: 40px;
-            color: antiquewhite;
-            height: 100px
-        }
-
-        button#otherspage {
-            border: solid 6px rgba(0, 255, 0, 0.5);
-            border-radius: 4px;
             background-color: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            font-size: 40px;
-            width: 500px;
-            margin-left: 200px;
-            color: antiquewhite;
-            height: 100px
-        }
-
-        button#peerspage {
-            border: solid 6px rgba(0, 0, 255, 0.5);
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            font-size: 40px;
-            width: 500px;
-            margin-left: 80px;
-            color: antiquewhite;
-            height: 100px
         }
 
         button:hover {
@@ -96,23 +72,28 @@
 </head>
 
 <body>
-    <p>Isaac's Page</p>
+    <a href="index.html">
+        <button class="back">Back</button>
+    </a>
     <hr><br>
+    <p>others / practice</p>
+    <div>
+        <ol>
+            <li>
+                <a href="Testing/Going to different html files">Going to different html files.html</a>
+            </li>
+            <li>
+                <a href="Testing/Pyscript/pyscripttest.html">pyscripttest.html</a>
+            </li>
+            <li>
+                <a href="Others/bannerPageRecreation.html">bannerPageRecreation.html</a>
+            </li>
+            <li>
+                <a href="Others/TidalConquerIFRAME.html">Tidal Conquer itch.io iFrame test</a>
+            </li>
+        </ol>
+    </div>
 
-    <a href="htmlpage.html">
-        <button id="htmlpage">HTML</button>
-    </a>
-
-    <br><br>
-    <a href="otherspage.html">
-        <button id="otherspage">OTHERS</button>
-    </a>
-
-    <br><br>
-    <a href="peerspage.html">
-        <button id="peerspage">PEERS</button>
-    </a>
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <p>copyright &copy; 2024</p>
 </body></html>
