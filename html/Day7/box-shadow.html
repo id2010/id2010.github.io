@@ -6,18 +6,41 @@
     <style>
         div {
 
-            border: solid;
+            /*            border: solid;*/
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background-color: deepskyblue;
+            /*            background-color: deepskyblue;*/
+            margin: auto;
+            margin-top: 50%;
+            transition: 1s;
 
+            /*            box-shadow: 0px 0px 10px 10px grey;*/
+
+        }
+
+        div:hover {
+            background-color: deepskyblue;
+            box-shadow: 0px 0px 10px 10px grey;
         }
     </style>
 </head>
 
 <body>
 
-    <div></div>
+    <div id="btn"></div>
+
+    <script>
+        let blue = true;
+        btn.addEventListener('click', function() {
+            if (blue === true) {
+                btn.style.backgroundColor = 'red';
+                blue = false;
+            } else {
+                btn.style.backgroundColor = 'deepskyblue';
+                blue = true;
+            }
+        });
+    </script>
 
 </body></html>
