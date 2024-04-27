@@ -5,6 +5,9 @@
     <title>Navigation Bar</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -13,6 +16,7 @@
 
         nav {
             background-color: #2c3f50;
+            padding: 27px 96px;
             color: white;
             padding: 27px 33px;
             position: relative;
@@ -20,7 +24,9 @@
 
         nav h2 {
             margin: 0px;
-            /*border: solid red;*/
+            font-family: montserrat;
+            margin-left:
+                /*border: solid red;*/
         }
 
         nav h2,
@@ -30,6 +36,11 @@
 
         nav li {
             display: inline-block;
+            margin-left: 32px;
+        }
+
+        nav li:hover {
+            color: #1abc9c
         }
 
         nav ul {
@@ -40,6 +51,9 @@
             bottom: 0px;
             height: 19px;
             margin: auto;
+            font-family: montserrat;
+            font-weight: 700;
+            transition: 0.15s;
         }
     </style>
 </head>
