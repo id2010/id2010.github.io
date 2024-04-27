@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>position
+    </title>
+    <style>
+        #container {
+            border: solid;
+            width: 300px;
+            height: 500px;
+            position: absolute;
+        }
+
+        .item {
+            width: 150px;
+            height: 150px;
+            border: solid blue;
+            font-size: 30px;
+            transition: 1s;
+        }
+
+        .item:hover {
+            right: 150px;
+        }
+
+        .item: .one {
+            /*by default, position is static. you can not do left: 135px if it is static. you have to set it to non static (for example: relative)*/
+            position: relative;
+            right: 0px;
+        }
+
+        .two {
+            /*absolute is relative to the container. to use this in a container, the container must be non-static*/
+            position: absolute;
+            right: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="item one">relative</div>
+        <div class="item two">absolute</div>
+    </div>
+
+</body></html>

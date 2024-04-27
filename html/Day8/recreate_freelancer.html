@@ -312,11 +312,62 @@
             color: mediumaquamarine;
         }
 
+        div#navigator {
+            margin: 0px !important;
+            padding: 1px;
+            background-color: darkslategray;
+            position: sticky;
+            top: 0px;
+            display: inline-flex;
+            width: 100%;
+        }
+
+        div#navigator p#t {
+            font-family: sans-serif;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-left: 125px;
+        }
+
+        div#navigator div#menu {
+            background-color: #1abc9c;
+            width: 80px;
+            display: inline-flex;
+            height: 30px;
+            border: solid 4px #0aa183;
+            border-radius: 10px;
+            text-align: center;
+            padding: 5px;
+            margin-top: 14px;
+            margin-right: 0px;
+            margin-left: 25%;
+            float: right;
+        }
+
+        div#navigator div#menu p {
+            color: white;
+            font-family: sans-serif;
+            font-weight: 500;
+            margin: 7px 7px;
+        }
+
+        div#navigator div#menu i {
+            color: white;
+            margin: 7px 1px;
+        }
     </style>
 
 </head>
 
 <body>
+    <div id="navigator">
+        <p id="t">START BOOTSTRAP</p>
+        <div id="menu">
+            <p>MENU</p>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
     <header>
         <img src="https://startbootstrap.github.io/startbootstrap-freelancer/assets/img/avataaars.svg" alt="">
         <h1>START BOOTSTRAP</h1>
@@ -375,7 +426,7 @@
         <br><br><br><br><br>
 
         <div id="inputbox">
-            2<h4>Full name</h4>
+            <h4>Full name</h4>
             <input type="text">
         </div>
 
@@ -442,6 +493,4 @@
     </div>
     <div id="greenline"></div>
 
-</body>
-
-</html>
+</body></html>
