@@ -3,135 +3,89 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>All</title>
+    <title>id2010</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+
     <style>
-        body {
-            margin: 20;
-            height: 100%;
-            background: url(https://images.pexels.com/photos/3815111/pexels-photo-3815111.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) repeat center fixed;
-        }
 
-        body {
-            /*
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            */
-        }
-
-        div {
-            padding: 5px;
-            border: solid 5px rgba(255, 180, 150, 0.5);
-            border-radius: 10px;
-        }
-
-        p {
-            font-family: sans-serif;
-            line-height: 0px;
-            color: white;
-            font-weight: 600;
-            text-shadow: 0px 0px 2px antiquewhite;
-            font-size: 30px
-        }
-
-        a {
-            font-family: sans-serif;
-            color: antiquewhite;
-            font-weight: 600;
-            text-shadow: 0px 0px 1px white;
-        }
-
-        ol {
-            font-family: sans-serif;
-            color: white;
-            font-weight: 600;
-            text-shadow: 0px 0px 1px pink;
-        }
-
-        button#htmlpage {
-            border: solid 6px rgba(255, 0, 0, 0.5);
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            font-size: 40px;
-            width: 500px;
-            margin-left: 40px;
-            color: antiquewhite;
-            height: 100px
-        }
-
-        button#otherspage {
-            border: solid 6px rgba(0, 255, 0, 0.5);
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            font-size: 40px;
-            width: 500px;
-            margin-left: 200px;
-            color: antiquewhite;
-            height: 100px
-        }
-
-        button#peerspage {
-            border: solid 6px rgba(0, 0, 255, 0.5);
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            font-size: 40px;
-            width: 500px;
-            margin-left: 80px;
-            color: antiquewhite;
-            height: 100px
-        }
-
-        button#freeads {
-            border: solid 6px rgba(255, 0, 255, 0.5);
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            font-size: 40px;
-            width: 500px;
-            margin-left: 160px;
-            color: antiquewhite;
-            height: 100px
-        }
-
-        button:hover {
-            font-weight: 1000;
-        }
-
-        hr {
-            border: solid 2px hotpink;
-            margin: 20px;
-        }
     </style>
 </head>
 
 <body>
-    <p>Isaac's Page</p>
-    <hr><br>
 
-    <a href="htmlpage.html">
-        <button id="htmlpage">HTML</button>
-    </a>
+    <nav>
+        <p>Navigation</p>
+        <ul>
+            <!--Html-->
+            <li>
+                <a href="Page/new_htmlpage.html">
+                    <button>Html</button>
+                </a>
+            </li>
+            <!--Others-->
+            <li>
+                <a href="otherspage.html">
+                    <button>Others</button>
+                </a>
+            </li>
+            <!--Peers-->
+            <li>
+                <a href="peerspage.html">
+                    <button>Peers</button>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-    <br><br>
-    <a href="otherspage.html">
-        <button id="otherspage">OTHERS</button>
-    </a>
 
-    <br><br>
-    <a href="peerspage.html">
-        <button id="peerspage">PEERS</button>
-    </a>
+    <div id="body2">
 
-    <br><br>
-    <!--
-    <a href="watchadsforfree.html">
-        <button id="freeads">WATCH ADS</button>
-    </a>
--->
+        <h1>Home page</h1>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <p>copyright &copy; 2024</p>
+        <hr>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, reiciendis minima eum, cum et, quo quasi harum aliquam officia vitae, nemo voluptatibus illo vero. Autem nemo perspiciatis fuga, nobis quas unde repudiandae veritatis deleniti vel ut debitis rem blanditiis iusto officiis, adipisci sit non, iste. Cupiditate alias aspernatur placeat accusamus odit nobis, corporis similique soluta magnam doloribus reiciendis tempora, rerum praesentium quae possimus repudiandae ut error itaque minus doloremque. Laborum modi tempora illum, quo facilis quam ab, nisi at nostrum ex cum repudiandae, voluptatem expedita sunt. Modi commodi perferendis, excepturi voluptas, architecto provident unde neque deserunt ut repellendus error quasi.</p>
+
+        <hr id="two">
+
+        <h2>Color theme</h2>
+
+        <div class="colorgroup">
+            <div class="color" style="background-color: var(--color1)"></div>
+            <p>#A79277</p>
+        </div>
+        <div class="colorgroup">
+            <div class="color" style="background-color: var(--color2)"></div>
+            <p>#D1BB9E</p>
+        </div>
+        <div class="colorgroup">
+            <div class="color" style="background-color: var(--color3)"></div>
+            <p>#EAD8C0</p>
+        </div>
+        <div class="colorgroup">
+            <div class="color" style="background-color: var(--color4)"></div>
+            <p>#FFF2E1</p>
+        </div>
+
+        <a href="https://colorhunt.co/palette/a79277d1bb9eead8c0fff2e1">
+            <p>Link to theme</p>
+        </a>
+
+        <hr>
+
+
+        <footer>
+            <p>Copyright &copy; 2024</p>
+        </footer>
+
+    </div>
+
 </body></html>

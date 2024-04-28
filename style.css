@@ -1,0 +1,146 @@
+/* Css Variables */
+:root {
+    --color1: #A79277;
+    --color2: #D1BB9E;
+    --color3: #EAD8C0;
+    --color4: #FFF2E1;
+    --main-font-size: 24px;
+    --big-font-size: 32px;
+    --small-font-size: 16px;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: var(--color3);
+}
+
+
+/* Start of Navigation */
+
+nav {
+    background-color: var(--color1);
+    position: sticky;
+    top: 0px;
+    padding: 26px;
+}
+
+nav p {
+    display: inline-block;
+    line-height: 35px;
+    margin: 0px;
+    color: var(--color4);
+    font-weight: 600;
+    font-family: montserrat;
+    font-size: var(--big-font-size);
+}
+
+nav ul {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    margin: auto 20px;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+nav li button:hover {
+    font-size: 30px;
+    color: var(--color4);
+}
+
+nav li button {
+    padding: None;
+    border: None;
+    background-color: transparent;
+    color: var(--color3);
+    font-weight: 500;
+    font-family: montserrat;
+    font-size: var(--main-font-size);
+    transition: 0.25s;
+}
+
+/* End of Navigation */
+
+
+/* Start of Extra Stuff */
+
+div#body2 {
+    margin: 0px 0px;
+    padding: 10px;
+}
+
+h1 {
+    color: var(--color1);
+    font-weight: 700;
+    font-family: montserrat;
+    font-size: var(--big-font-size);
+}
+
+h2 {
+    color: var(--color1);
+    font-weight: 500;
+    font-family: montserrat;
+    font-size: var(--big-font-size);
+}
+
+p {
+    color: var(--color2);
+    font-weight: 500;
+    font-family: montserrat;
+    font-size: var(--small-font-size);
+}
+
+a {
+    text-decoration-color: var(--color1);
+    transition: 0.25s;
+}
+
+a p {
+    transition: 0.25s;
+}
+
+a p:hover {
+    font-size: 18px;
+    background-color: var(--color1);
+}
+
+hr {
+    border: solid var(--color1);
+    width: 100%;
+}
+
+hr#two {
+    border: solid 1px var(--color1);
+    width: 100%;
+}
+
+ul {
+    color: var(--color1)
+}
+
+footer p {
+    color: var(--color2);
+    font-weight: 400;
+    font-family: montserrat;
+    font-size: var(--small-font-size);
+    position: absolute;
+    bottom: 0px;
+}
+
+.color {
+    width: 20px;
+    height: 20px;
+    border: solid 1px var(--color1);
+    border-radius: 3px;
+}
+
+.colorgroup {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+/* End of Extra Stuff */
