@@ -75,11 +75,8 @@
         }
 
         div#second {
-            width: 80%;
             height: 500px;
             text-align: center;
-            position: absolute;
-            left: 10%;
         }
 
         div#second h3,
@@ -87,6 +84,9 @@
             color: var(--color1);
             font-family: 'Montserrat';
             line-height: 30px;
+            width: 500px;
+            position: relative;
+            display: inline-block;
         }
 
         div#second h3 {
@@ -120,10 +120,74 @@
             padding-left: 30px;
             padding-right: 30px;
             transition: 0.2s;
+            top: 30px;
         }
 
         div#second button:hover {
             background-color: #48444c;
+        }
+
+        div#third {
+            background-color: #20849c;
+            padding: 60px 0px;
+            text-align: center;
+        }
+
+        div#third div#icons {
+            display: inline-block;
+        }
+
+        div#third div#icons div#icon {
+            margin-top: 40px;
+            color: #20849c;
+            background-color: white;
+            width: 100px;
+            height: 100px;
+            border-radius: 1000px;
+            text-align: center;
+            position: relative;
+            margin-left: 89px
+        }
+
+
+        div#third div#icons div#icon i {
+            top: 35%;
+            font-size: 30px;
+            position: relative;
+        }
+
+        div#third h6 {
+            color: orange;
+            font-size: 16px;
+            font-family: 'Montserrat';
+            margin: 0px 0px;
+        }
+
+        div#third h1 {
+            color: white;
+            font-size: 36px;
+            font-family: 'Montserrat';
+            margin: 0 0;
+        }
+
+        div#third p {
+            color: white;
+            font-size: 22px;
+            font-family: 'Montserrat';
+            margin: 10px 10px;
+            font-weight: 700;
+        }
+
+        div#third h5 {
+            color: #bcd9e2;
+            font-size: 16px;
+            font-family: 'Montserrat';
+            margin: 0 0;
+            font-weight: 400
+        }
+
+        div#fourth {
+            background-image: url()
         }
 
     </style>
@@ -146,6 +210,45 @@
         <a href="">
             <button>What We Offer</button>
         </a>
+    </div>
+
+    <div id="third">
+        <h6>SERVICES</h6>
+        <h1>What we offer</h1>
+        <div id="icons">
+            <div>
+                <div id="icon">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </div>
+                <p>Responsive</p>
+                <h5>Looks great on any screen size!</h5>
+            </div>
+            <div>
+                <div id="icon">
+                    <i class="fa-solid fa-pencil"></i>
+                </div>
+                <p>Redesigned</p>
+                <h5>Freshly redesigned for Bootstrap 5.</h5>
+            </div>
+            <div>
+                <div id="icon">
+                    <i class="fa-regular fa-thumbs-up"></i>
+                </div>
+                <p>Favorited</p>
+                <h5>Millions of users ♡ Start Bootstrap!</h5>
+            </div>
+            <div>
+                <div id="icon">
+                    <i class="fa-solid fa-question"></i>
+                </div>
+                <p>Question</p>
+                <h5>I mustache you a question...</h5>
+            </div>
+        </div>
+    </div>
+
+    <div id="fourth">
+
     </div>
 
 </body>
