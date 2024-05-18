@@ -29,7 +29,7 @@
             width: 100%;
             text-align: center;
             margin-top: 0px;
-
+            filter: brightness(1.05);
         }
 
         header h1,
@@ -41,7 +41,7 @@
         header h1 {
             margin-top: 0px;
             font-size: 55px;
-            top: 100px;
+            top: 130px;
             position: relative;
         }
 
@@ -49,7 +49,7 @@
             font-size: 25px;
             font-style: italic;
             font-weight: 600;
-            top: 80px;
+            top: 100px;
             position: relative;
             letter-spacing: -2px;
         }
@@ -58,16 +58,16 @@
             font-family: 'Montserrat';
             font-weight: 400;
             font-size: 16px;
-            top: 100px;
+            top: 130px;
             position: relative;
             padding: 25px;
             border: None;
             border-radius: 10px;
             color: white;
             background-color: var(--color2);
-            padding-left: 50px;
-            padding-right: 50px;
-            transition: 0.1s;
+            padding-left: 30px;
+            padding-right: 30px;
+            transition: 0.2s;
         }
 
         header button:hover {
@@ -85,7 +85,8 @@
         div#second h3,
         div#second p {
             color: var(--color1);
-            font-family: 'Montserrat'
+            font-family: 'Montserrat';
+            line-height: 30px;
         }
 
         div#second h3 {
@@ -104,6 +105,27 @@
         div#second a {
             color: var(--color2);
         }
+
+        div#second button {
+            font-family: 'Montserrat';
+            font-weight: 400;
+            font-size: 16px;
+            top: 100px;
+            position: relative;
+            padding: 25px;
+            border: None;
+            border-radius: 10px;
+            color: white;
+            background-color: var(--color1);
+            padding-left: 30px;
+            padding-right: 30px;
+            transition: 0.2s;
+        }
+
+        div#second button:hover {
+            background-color: #48444c;
+        }
+
     </style>
 </head>
 
@@ -111,13 +133,21 @@
     <header>
         <h1>Stylish Portfolio</h1>
         <p>A Free Bootstrap Theme by Start Bootstrap</p>
-        <button>Find out more</button>
+        <a href="">
+            <button>Find out more</button>
+        </a>
 
     </header>
 
     <div id="second">
+        <br>
         <h3>Stylish Portfolio is the perfect theme for your next project!</h3>
         <p>This theme features a flexible, UX friendly sidebar menu and stock photos from our friends at <a href="https://unsplash.com/">Unsplash</a>!</p>
+        <a href="">
+            <button>What We Offer</button>
+        </a>
     </div>
 
-</body></html>
+</body>
+
+</html>

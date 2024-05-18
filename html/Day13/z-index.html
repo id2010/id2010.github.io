@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Z-Index</title>
+
+    <style>
+        #container {
+            border: solid 4px black;
+            height: 300px;
+            width: 300px;
+        }
+
+        .item {
+            width: 200px;
+            height: 200px;
+            font-size: 60px;
+            text-align: center;
+        }
+
+        #one {
+            background-color: pink;
+            z-index: 2;
+            position: relative;
+        }
+
+        #two {
+            background-color: deepskyblue;
+            z-index: 1;
+            position: relative;
+            top: -100px;
+            left: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <!--div#container>div.item#one+div.item#two-->
+        <div class="item" id="one">One</div>
+        <div class="item" id="two">Two</div>
+    </div>
+
+</body>
+
+</html>
