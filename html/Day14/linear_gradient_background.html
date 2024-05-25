@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linear Background Gradient</title>
+    <style>
+        div#one {
+            background-color: red;
+            border: solid;
+            height: 100px;
+            background: linear-gradient(white, black);
+        }
+
+        div#two {
+            background-color: red;
+            border: solid;
+            height: 100px;
+            background: linear-gradient(white, black, white, black);
+        }
+
+        div#three {
+            background-color: red;
+            border: solid;
+            height: 100px;
+            background: linear-gradient(white, 70%, black);
+        }
+
+        div#four {
+            background-color: red;
+            border: solid;
+            height: 100px;
+            background: linear-gradient(to right, white, black);
+        }
+
+        div#five {
+            background-color: red;
+            border: solid;
+            height: 100px;
+            background: linear-gradient(to top right, black, 50%, white, black);
+        }
+
+        div#six {
+            background-color: red;
+            border: solid;
+            height: 100px;
+            background: linear-gradient(red, orange, yellow, green, blue, purple);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="one">Basic</div>
+    <div id="two">Multiple colors</div>
+    <div id="three">Percentages</div>
+    <div id="four">To right</div>
+    <div id="five">To top right</div>
+    <div id="six">Rainbow</div>
+
+</body></html>
