@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overflow for Float</title>
+    <style>
+        #container {
+            width: 400px;
+            border: solid;
+            background-color: black;
+            /*Lets the container include its child again*/
+            overflow: auto;
+        }
+
+        .item {
+            width: 200px;
+            height: 200px;
+        }
+
+        .left {
+            width: 150px;
+            background-color: aqua;
+            float: left;
+        }
+
+        .right {
+            background-color: bisque;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="item left"></div>
+        <div class="item right"></div>
+    </div>
+
+</body></html>
