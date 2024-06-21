@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Border image</title>
+    <style>
+        div {
+            border: solid 50px;
+            width: 300px;
+            height: 200px;
+            border-image: url(border.png);
+            /* border image slice defines how much size of image for border corners */
+            border-image-slice: 423;
+            border-image-repeat: repeat;
+            border-image-repeat: round;
+        }
+
+        img {
+            width: 150px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div></div>
+
+    <img src="border.png" alt="">
+
+</body></html>

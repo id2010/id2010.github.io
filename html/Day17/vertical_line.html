@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #container {
+            border: solid;
+            width: 300px;
+            height: 200px;
+            position: relative;
+        }
+
+        #item {
+            width: 200px;
+            background-color: deepskyblue;
+            height: 150px;
+            /*      */
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        #container1 {
+            border: solid;
+            width: 300px;
+            height: 200px;
+            display: flex;
+        }
+
+        #item1 {
+            width: 200px;
+            background-color: tomato;
+            height: 150px;
+            margin: auto;
+        }
+
+        #container2 {
+            border: solid;
+            width: 300px;
+            height: 200px;
+            position: relative;
+        }
+
+        #item2 {
+            width: 200px;
+            background-color: lime;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="item"></div>
+    </div>
+
+    <div id="container1">
+        <div id="item1"></div>
+    </div>
+
+    <div id="container2">
+        <div id="item2"></div>
+    </div>
+
+</body></html>
