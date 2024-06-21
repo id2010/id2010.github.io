@@ -122,12 +122,17 @@ ul {
     color: var(--color1)
 }
 
+footer {
+    text-align: center;
+}
+
 footer p {
+    position: fixed;
+    width: 100%;
     color: var(--color2);
     font-weight: 400;
     font-family: montserrat;
     font-size: var(--small-font-size);
-    position: absolute;
     bottom: 0px;
 }
 
