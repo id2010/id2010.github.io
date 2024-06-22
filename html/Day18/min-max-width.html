@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimum or Maximum width</title>
+    <style>
+        #container {
+            border: solid black;
+            width: 400px;
+            height: 200px;
+        }
+
+        #item {
+            width: 3oopx;
+            height: 1oopx;
+            background-color: deepskyblue;
+            /*max-width overwrites width, it has higher priority*/
+            max-width: 200px;
+            /*min-width overwrites max-width*/
+            min-width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="item">ITEM</div>
+    </div>
+
+</body></html>

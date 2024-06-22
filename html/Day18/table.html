@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table (finally)</title>
+    <style>
+        table {
+            font-size: 30px;
+            background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Rotating_earth_%28large%29.gif/200px-Rotating_earth_%28large%29.gif);
+            color: white;
+            border-radius: 10px;
+            border: solid blue 10px;
+        }
+
+        tr:first-child {
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+        td {
+            padding: 10px 10px;
+        }
+
+        tr:not(:first-child) {
+            font-size: 25px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(128, 128, 128, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--table>tr*4>td*3-->
+    <table border>
+        <!--table row-->
+        <tr>
+            <!--rable data-->
+            <td>name</td>
+            <td>phone</td>
+            <td>address</td>
+        </tr>
+        <tr>
+            <td>jason</td>
+            <td>519-701-7988</td>
+            <td>london</td>
+        </tr>
+        <tr>
+            <td>jameel</td>
+            <td>123-456-7890</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>lamar</td>
+            <td>234-567-8901</td>
+            <td>toronto</td>
+        </tr>
+    </table>
+
+</body></html>
