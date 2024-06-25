@@ -19,24 +19,24 @@
 <body>
 
     <nav>
-        <p>Navigation</p>
+        <p id="navtext">Navigation</p>
         <ul>
-            <!--Home-->
+            <!--Html-->
             <li>
-                <a href="../index.html">
-                    <button>Home</button>
+                <a href="Page/new_htmlpage.html">
+                    <button id="navbutton1">Html</button>
                 </a>
             </li>
             <!--Others-->
             <li>
-                <a href="../otherspage.html">
-                    <button>Others</button>
+                <a href="otherspage.html">
+                    <button id="navbutton2">Others</button>
                 </a>
             </li>
             <!--Peers-->
             <li>
-                <a href="../peerspage.html">
-                    <button>Peers</button>
+                <a href="peerspage.html">
+                    <button id="navbutton3">Peers</button>
                 </a>
             </li>
         </ul>
@@ -147,5 +147,38 @@
         </footer>
 
     </div>
+    <script>
+        function updateP() {
+            const paragraph = document.getElementById('navtext');
+            if (window.innerWidth <= 600) {
+                paragraph.textContent = "Nav";
+            } else {
+                paragraph.textContent = "Navigation";
+            }
+            const navparagraph1 = document.getElementById('navbutton1');
+            if (window.innerWidth <= 600) {
+                navparagraph1.style.fontSize = '16px';
+                navparagraph1.style.marginTop = '8px';
+            } else {
+                navparagraph1.style.fontSize = '24px';
+            }
+            const navparagraph2 = document.getElementById('navbutton2');
+            if (window.innerWidth <= 600) {
+                navparagraph2.style.fontSize = '16px';
+                navparagraph1.style.marginTop = '8px';
+            } else {
+                navparagraph2.style.fontSize = '24px';
+            }
+            const navparagraph3 = document.getElementById('navbutton3');
+            if (window.innerWidth <= 600) {
+                navparagraph3.style.fontSize = '16px';
+                navparagraph1.style.marginTop = '8px';
+            } else {
+                navparagraph3.style.fontSize = '24px';
+            }
+        }
+        updateP();
+        window.addEventListener('resize', updateP);
+    </script>
 
 </body></html>

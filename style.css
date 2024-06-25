@@ -95,6 +95,7 @@ p {
 }
 
 a {
+    color: var(--color1);
     text-decoration-color: var(--color1);
     transition: 0.25s;
 }
@@ -124,16 +125,29 @@ ul {
 
 footer {
     text-align: center;
+    margin-right: 180px;
 }
 
 footer p {
+    padding: 10px;
+    border-radius: 100px;
     position: fixed;
-    width: 100%;
     color: var(--color2);
     font-weight: 400;
     font-family: montserrat;
     font-size: var(--small-font-size);
     bottom: 0px;
+    background-color: var(--color3);
+    display: inline;
+    filter: opacity(0.7);
+    transition: 1s;
+}
+
+footer p:hover {
+    border-radius: 5px;
+    background-color: var(--color4);
+    filter: opacity(1);
+    color: none;
 }
 
 .color {
@@ -149,3 +163,44 @@ footer p {
 }
 
 /* End of Extra Stuff */
+
+/*Projects stuff*/
+
+div#project {
+    text-align: center;
+    box-sizing: content-box;
+}
+
+div#project a img {
+    display: inline-block;
+    width: 100%;
+    transition: 0.5s;
+    border: solid var(--color2) 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition-timing-function: ease-in-out;
+    max-height: 450px;
+    max-width: 100%;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+div#project a img:hover {
+    border: solid var(--color1) 20px;
+}
+
+div#project a p,
+div#project a p:not(:hover) {
+    display: inline-block;
+    margin: 20px;
+    margin-top: -5px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/*End of Projects stuff*/

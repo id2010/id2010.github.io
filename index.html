@@ -22,24 +22,24 @@
 <body>
 
     <nav>
-        <p>Navigation</p>
+        <p id="navtext">Navigation</p>
         <ul>
             <!--Html-->
             <li>
                 <a href="Page/new_htmlpage.html">
-                    <button>Html</button>
+                    <button id="navbutton1">Html</button>
                 </a>
             </li>
             <!--Others-->
             <li>
                 <a href="otherspage.html">
-                    <button>Others</button>
+                    <button id="navbutton2">Others</button>
                 </a>
             </li>
             <!--Peers-->
             <li>
                 <a href="peerspage.html">
-                    <button>Peers</button>
+                    <button id="navbutton3">Peers</button>
                 </a>
             </li>
         </ul>
@@ -51,9 +51,41 @@
         <h1>Home page</h1>
 
         <hr>
+        <hr>
 
+        <h2>About me</h2>
         <p>Hello! My name is Isaac, a 14 year old boy who loves to code. Currently, I know how to write Python, HTML, and CSS, and I am going to start learning JavaScript soon. Blue is my favorite color, I spend most of my time on my laptop writing code or playing video games. I'm really into creating games, especially with Python, and I post my finished products on itch.io. Stick around to see what I might create next!</p>
-        <p>Email me at: isaacding2010@gmail.com</p>
+
+        <hr id="two">
+
+        <h2>Projects I have done</h2>
+        <div id="project">
+            <a href="https://id2010.github.io/html/Day8/recreate_freelancer.html" target="_blank">
+                <img src="img/Screenshot_Freelancer.png" alt="">
+                <p>Freelancer</p>
+            </a>
+        </div>
+        <div id="project">
+            <a href="https://id2010.github.io/html/Day11/Homework/stylishportfolio.html" target="_blank">
+                <img src="img/Screenshot_Stylish_Portfolio.png" alt="">
+                <p>Stylish Portfolio</p>
+            </a>
+        </div>
+
+        <hr id="two">
+
+        <h2>Tools I use</h2>
+
+        <hr id="two">
+
+        <h2>Skills</h2>
+
+        <hr id="two">
+
+        <h2>Contacts</h2>
+        <p>Email: isaacding2010@gmail.com</p>
+        <p>Discord: someisaacperson</p>
+        <p>Itch.io: <a href="https://polartblock.itch.io/" target="_blank">polartblock</a></p>
 
         <hr id="two">
 
@@ -76,7 +108,7 @@
             <p>#FFF2E1</p>
         </div>
 
-        <a href="https://colorhunt.co/palette/a79277d1bb9eead8c0fff2e1">
+        <a href="https://colorhunt.co/palette/a79277d1bb9eead8c0fff2e1" target="_blank">
             <p>Link to theme</p>
         </a>
 
@@ -99,7 +131,37 @@
         </footer>
 
     </div>
-
-</body>
-
-</html>
+    <script>
+        function updateP() {
+            const paragraph = document.getElementById('navtext');
+            if (window.innerWidth <= 600) {
+                paragraph.textContent = "Nav";
+            } else {
+                paragraph.textContent = "Navigation";
+            }
+            const navparagraph1 = document.getElementById('navbutton1');
+            if (window.innerWidth <= 600) {
+                navparagraph1.style.fontSize = '16px';
+                navparagraph1.style.marginTop = '8px';
+            } else {
+                navparagraph1.style.fontSize = '24px';
+            }
+            const navparagraph2 = document.getElementById('navbutton2');
+            if (window.innerWidth <= 600) {
+                navparagraph2.style.fontSize = '16px';
+                navparagraph1.style.marginTop = '8px';
+            } else {
+                navparagraph2.style.fontSize = '24px';
+            }
+            const navparagraph3 = document.getElementById('navbutton3');
+            if (window.innerWidth <= 600) {
+                navparagraph3.style.fontSize = '16px';
+                navparagraph1.style.marginTop = '8px';
+            } else {
+                navparagraph3.style.fontSize = '24px';
+            }
+        }
+        updateP();
+        window.addEventListener('resize', updateP);
+    </script>
+</body></html>
