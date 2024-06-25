@@ -78,6 +78,7 @@ h1 {
     font-weight: 700;
     font-family: montserrat;
     font-size: var(--big-font-size);
+    text-shadow: 0px 0px 0.1px black;
 }
 
 h2 {
@@ -85,6 +86,7 @@ h2 {
     font-weight: 500;
     font-family: montserrat;
     font-size: var(--big-font-size);
+    text-shadow: 0px 0px 0.1px black;
 }
 
 p {
@@ -92,6 +94,7 @@ p {
     font-weight: 500;
     font-family: montserrat;
     font-size: var(--small-font-size);
+    text-shadow: 0px 0px 0.1px black;
 }
 
 a {
@@ -165,6 +168,22 @@ footer p:hover {
 .colorgroup {
     display: inline-block;
     margin-left: 25px;
+}
+
+div.skillbox {
+    width: 40px;
+    height: 40px;
+    border: solid var(--color1);
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    display: inline-block;
+}
+
+div.skillbox img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
 }
 
 /* End of Extra Stuff */
