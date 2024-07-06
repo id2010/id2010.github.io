@@ -37,7 +37,7 @@
         lastFrameTime = now;
 
         const thisFrame = 1000 / elapsed;
-        fps += (thisFrame - fps) / 20;
+        fps += (thisFrame - fps);
 
         framesThisSecond++;
         if (now > lastFrameTime + 1000) {
@@ -94,7 +94,7 @@
 
     function draw() {
         // screen.clearRect(0, 0, canvas.width, canvas.height);
-        screen.clearRect(0, 0, 50, 20);
+        screen.clearRect(0, 0, 60, 12);
 
         screen.beginPath();
         screen.fillStyle = paddle.color;
