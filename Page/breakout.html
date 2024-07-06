@@ -83,7 +83,7 @@
                 this.x_vel = -this.x_vel;
             }
 
-            else if (this.y <= 0 || this.y >= canvas.height) {
+            else if (this.y <= 0) {
                 this.y_vel = -this.y_vel;
             }
         }
@@ -93,7 +93,8 @@
     console.table(ball);
 
     function draw() {
-        screen.clearRect(0, 0, canvas.width, canvas.height);
+        // screen.clearRect(0, 0, canvas.width, canvas.height);
+        screen.clearRect(0, 0, 50, 20);
 
         screen.beginPath();
         screen.fillStyle = paddle.color;
@@ -107,16 +108,16 @@
         screen.closePath();
 
         screen.fillStyle = "black";
-        screen.fillText(Math.round(fps), 10, 10);
+        screen.fillText("fps " + String(Math.round(fps)), 10, 10);
     }
 
     function update() {
+        updateFPS();
         paddle.update();
         ball.update();
     }
 
     function main() {
-        updateFPS();
         update();
         draw();
 
