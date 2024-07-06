@@ -45,7 +45,7 @@
             framesThisSecond = 0;
             lastFrameTime = now;
         }
-        dt = fps / 1000;
+        dt = 1 / fps;
     }
 
     let paddle_properties = {
@@ -73,8 +73,8 @@
         ...ball_properties,
         x: canvas.width / 2,
         y: paddle.y - ball_properties.radius,
-        x_vel: 100,
-        y_vel: 40,
+        x_vel: 200,
+        y_vel: 80,
         update: function () {
             this.x -= this.x_vel * dt;
             this.y -= this.y_vel * dt;
@@ -83,7 +83,7 @@
                 this.x_vel = -this.x_vel;
             }
 
-            else if (this.y <= 0) {
+            else if (this.y <= 0 || this.y >= canvas.height) {
                 this.y_vel = -this.y_vel;
             }
         }
@@ -100,12 +100,14 @@
         screen.rect(paddle.x, paddle.y, paddle.width, paddle.height);
         screen.fill();
         screen.closePath();
-
         screen.beginPath();
         screen.fillStyle = ball.color;
         screen.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
         screen.fill();
         screen.closePath();
+
+        screen.fillStyle = "black";
+        screen.fillText(Math.round(fps), 10, 10);
     }
 
     function update() {
