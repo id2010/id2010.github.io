@@ -26,6 +26,10 @@
     const canvas = document.querySelector("#canvas");
     const screen = canvas.getContext("2d");
 
+    let paused = false;
+    let held_key = null;
+    let pressed_space = null;
+
     let fps = 0;
     let dt = 0;
     let lastFrameTime = performance.now();
@@ -48,6 +52,18 @@
         dt = 1 / fps;
     }
 
+    function rectPointCollision(point, rect) {
+        if (point[0] >= rect[0] && point[0] <= rect[0] + rect[2] && point[1] >= rect[1] && point[1] <= rect[1] + rect[3]) {
+            return true;
+        }
+        return false;
+    }
+
+    let keymap = {
+        left: ["A", "a", "ArrowLeft"],
+        right: ["D", "d", "ArrowRight"]
+    }
+
     let paddle_properties = {
         y_offset: 20,
         width: 100,
@@ -65,7 +81,19 @@
         x: canvas.width / 2 - paddle_properties.width / 2,
         y: canvas.height - paddle_properties.height - paddle_properties.y_offset,
         update: function () {
+            if (keymap.left.includes(held_key)) {
+                this.x -= 300 * dt;
+            }
+            else if (keymap.right.includes(held_key)) {
+                this.x += 300 * dt;
+            }
 
+            if (this.x < 0) {
+                this.x = 0;
+            }
+            else if (this.x + this.width > canvas.width) {
+                this.x = canvas.width - this.width;
+            }
         }
     }
 
@@ -79,22 +107,33 @@
             this.x -= this.x_vel * dt;
             this.y -= this.y_vel * dt;
 
-            if (this.x <= 0 || this.x >= canvas.width) {
+            if (this.x - this.radius <= 0 || this.x + this.radius >= canvas.width) {
                 this.x_vel = -this.x_vel;
             }
-
-            else if (this.y <= 0) {
+            else if (this.y - this.radius <= 0) {
+                this.y_vel = -this.y_vel;
+            }
+            else if (rectPointCollision([this.x, this.y + this.radius], [paddle.x, paddle.y, paddle.width, paddle.height])) {
                 this.y_vel = -this.y_vel;
             }
         }
     }
 
-    console.table(paddle);
-    console.table(ball);
+    function get_events() {
+    window.addEventListener("keyup", function (e) {
+        held_key = null;
+        if (e.key === " ") {
+            pressed_space = true;
+        }
+    });
+    window.addEventListener("keydown", function (e) {
+        held_key = e.key;
+    });
+}
 
     function draw() {
-        // screen.clearRect(0, 0, canvas.width, canvas.height);
-        screen.clearRect(0, 0, 50, 12);
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+        // screen.clearRect(0, 0, 50, 12);
 
         screen.beginPath();
         screen.fillStyle = paddle.color;
@@ -112,12 +151,21 @@
     }
 
     function update() {
+        if (pressed_space) {
+            paused = !paused;
+            pressed_space = false;
+        }
+
         updateFPS();
-        paddle.update();
-        ball.update();
+        
+        if (!paused) {
+            paddle.update();
+            ball.update();
+        }
     }
 
     function main() {
+        get_events();
         update();
         draw();
 
