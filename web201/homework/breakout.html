@@ -146,8 +146,9 @@
         screen.fill();
         screen.closePath();
 
+        screen.font = "16px Arial";
         screen.fillStyle = "black";
-        screen.fillText("fps " + String(Math.round(fps)), 10, 10);
+        screen.fillText("fps " + String(Math.round(fps)), 10, 20);
     }
 
     function update() {
