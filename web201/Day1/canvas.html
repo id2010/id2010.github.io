@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Canvas</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+</body>
+
+<script>
+    let x = 0;
+    x++;
+    // console.dir(canvas)
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    screen.beginPath();
+    screen.fillStyle = 'blue';
+    screen.fillRect(x, 10, 100, 100);
+
+    screen.beginPath();
+    screen.rect(200, 200, 100, 100);
+    screen.fillStyle = 'red';
+    screen.fill();
+
+    screen.beginPath();
+    screen.rect(300, 300, 200, 100);
+    screen.fillStyle = 'purple';
+    screen.fill();
+</script>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving rect</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Moving Rectangle</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    let x = 0;
+
+    function increase_x() {
+        x++;
+    }
+
+    function main(x_coordnite) {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        screen.beginPath();
+
+        screen.fillStyle = 'blue';
+
+        screen.fillRect(x, 10, 100, 100);
+        
+        increase_x();
+
+        requestAnimationFrame(main);
+    }
+
+    main(x);
+</script>
+
+</html>

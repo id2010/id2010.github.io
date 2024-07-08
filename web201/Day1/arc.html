@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arc</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Arc</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+</body>
+
+<script>
+    let x = 0;
+    x++;
+    let canvas = document.querySelector("#canvas")
+    let screen = canvas.getContext("2d");
+    // javascript does not use degree, it uses radian
+    // Degree -> Radian
+    /*
+    360 == PI*2
+    180 == PI
+    1deg == PI/180
+    */
+    screen.arc(100, 200, 50, 0, Math.PI*2);
+    screen.fill();
+
+    screen.beginPath();
+    screen.arc(100, 300, 50, 0,  Math.PI/180*360);
+    screen.fill();
+
+    screen.beginPath();
+    screen.arc(100, 400, 50, 0,  Math.PI/180*90);
+    screen.fill();
+
+    screen.beginPath();
+    screen.arc(100, 400, 50, 0,  Math.PI/180*180);
+    screen.fill();
+</script>
+
+</html>

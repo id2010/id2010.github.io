@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout 1</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Breakout 1</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+
+    let paddle = {
+        x: canvas.width / 2 - 80,
+        y: canvas.height - 20,
+        w: 160,
+        h: 20,
+        draw: function () {
+            screen.beginPath();
+            screen.rect(this.x, this.y, this.w, this.h);
+            screen.fill();
+        }
+    }
+
+    let ball = {
+        x: canvas.width / 2,
+        y: canvas.height - 40,
+        r: 20,
+        draw: function () {
+            screen.beginPath();
+            screen.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            screen.fill();
+        },
+        update: function () {
+            this.x -= 5;
+            this.y -= 2;
+        }
+    }
+
+    console.table(paddle);
+
+    function draw() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        paddle.draw();
+        ball.draw();
+    }
+
+    function update() {
+        ball.update();
+    }
+
+    function main() {
+        update();
+        draw();
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>

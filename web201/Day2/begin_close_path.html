@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TITLE</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        screen.beginPath();
+        screen.moveTo(50, 50);
+        screen.lineTo(250,50);
+        screen.lineTo(250,200);
+        screen.strokeStyle = "black";
+        screen.stroke();
+        screen.closePath();
+
+        screen.beginPath();
+        screen.moveTo(50, 350);
+        screen.lineTo(250, 350);
+        screen.lineTo(250, 450);
+        screen.strokeStyle = "black";
+        screen.fillStyle = "red";
+        screen.stroke();
+        screen.fill();
+        screen.closePath();
+        screen.stroke();
+
+        screen.beginPath();
+        screen.arc(400, 200, 50, 0, Math.PI/2);
+        screen.fillStyle = "green";
+        screen.fill();
+        screen.closePath();
+
+        screen.beginPath();
+        screen.arc(400, 300, 50, 0, Math.PI/2)
+        screen.fillStyle = "green";
+        screen.fill();
+        screen.closePath();
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>

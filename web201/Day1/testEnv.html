@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+</head>
+
+<body>
+    <h1>Test Input/Ouput & live preview</h1>
+    <input type="text" id="input1">
+    <p id="output1"></p>
+
+</body>
+
+<script>
+    let n = prompt("enter a number");
+    // Outputs in console
+    console.log(n);
+    // Outputs input as HTML element
+    document.write(n)
+
+    // Second way to get input
+    // Idk how to get value
+
+    let a = document.getElementById("input1").value;
+    document.getElementById("output1").innerText = a;
+
+
+</script>
+
+</html>

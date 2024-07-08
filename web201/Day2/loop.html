@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    // For loop - classic
+    for (let i=0; i<5; i++) {
+        document.write(i);
+    }
+
+    document.write("<br>")
+
+    a = ["a", "b", "c"];
+
+    // For i in a - For index in thing
+    for (let item in a) {
+        document.write(item);
+    }
+
+    document.write("<br>")
+
+    // For e of a - For element in thing
+    for (let item of a) {
+        document.write(item, " ");
+    }
+
+    document.write("<br><br>")
+
+    // Do while - do the thing then check if true to repeat again
+    let i = 5;
+    do {
+        document.write("index: ", i);
+        i--;
+    } while (i>0);
+    document.write("<br><br>")
+
+    // While - check first then do if true
+    i = 5;
+    while (i>0) {
+        document.write("index: ", i);
+        i--;
+    }
+
+    document.write("<br><br>")
+
+    // For each - go through each element
+    a.forEach(function(e){
+        document.write(e);
+        document.write("<br>")
+    })
+</script>
+
+</html>

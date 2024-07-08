@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+
+<body>
+
+    <h1>Functions</h1>
+
+</body>
+
+<script>
+    function add(a, b) {
+        return a + b;
+    }
+
+    // call function
+    c = add(100, 200);
+    console.log(c); // NaN: Not a Number
+
+    c = add(100);
+    console.log(c);
+
+    c = add(100, 100, 500); // additional parameter automatically ignored
+    console.log(c);
+
+    // auto invoke
+    c = (function minus(a, b) {
+        return a-b;
+    })(3, 100);
+    console.log(c);
+</script>
+
+</html>

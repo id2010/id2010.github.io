@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Breakout</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    const canvas = document.querySelector("#canvas");
+    const screen = canvas.getContext("2d");
+
+    let fps = 0;
+    let dt = 0;
+    let lastFrameTime = performance.now();
+    let framesThisSecond = 0;
+
+    function updateFPS() {
+        const now = performance.now();
+        const elapsed = now - lastFrameTime;
+        lastFrameTime = now;
+
+        const thisFrame = 1000 / elapsed;
+        fps += (thisFrame - fps);
+
+        framesThisSecond++;
+        if (now > lastFrameTime + 1000) {
+            fps = framesThisSecond;
+            framesThisSecond = 0;
+            lastFrameTime = now;
+        }
+        dt = 1 / fps;
+    }
+
+    let paddle_properties = {
+        y_offset: 20,
+        width: 100,
+        height: 20,
+        color: "black"
+    }
+
+    let ball_properties = {
+        radius: 10,
+        color: "black"
+    }
+
+    let paddle = {
+        ...paddle_properties,
+        x: canvas.width / 2 - paddle_properties.width / 2,
+        y: canvas.height - paddle_properties.height - paddle_properties.y_offset,
+        update: function () {
+
+        }
+    }
+
+    let ball = {
+        ...ball_properties,
+        x: canvas.width / 2,
+        y: paddle.y - ball_properties.radius,
+        x_vel: 200,
+        y_vel: 80,
+        update: function () {
+            this.x -= this.x_vel * dt;
+            this.y -= this.y_vel * dt;
+
+            if (this.x <= 0 || this.x >= canvas.width) {
+                this.x_vel = -this.x_vel;
+            }
+
+            else if (this.y <= 0) {
+                this.y_vel = -this.y_vel;
+            }
+        }
+    }
+
+    console.table(paddle);
+    console.table(ball);
+
+    function draw() {
+        // screen.clearRect(0, 0, canvas.width, canvas.height);
+        screen.clearRect(0, 0, 60, 12);
+
+        screen.beginPath();
+        screen.fillStyle = paddle.color;
+        screen.rect(paddle.x, paddle.y, paddle.width, paddle.height);
+        screen.fill();
+        screen.closePath();
+        screen.beginPath();
+        screen.fillStyle = ball.color;
+        screen.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        screen.fill();
+        screen.closePath();
+
+        // screen.fillStyle = "black";
+        // screen.fillText("fps " + String(Math.round(fps)), 10, 10);
+    }
+
+    function update() {
+        updateFPS();
+        paddle.update();
+        ball.update();
+    }
+
+    function main() {
+        update();
+        draw();
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>

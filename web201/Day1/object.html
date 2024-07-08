@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+
+<body>
+
+    <h1>Object</h1>
+
+</body>
+
+<script>
+    
+    // Object without class
+    person = {
+        name: "Joe",
+        age: 20,
+        hobbies: ["hiking", "talking", "pickelball"],
+        getInfo: function() {
+            return this.name, this.age, this.hobbies;
+        }
+    }
+
+    console.log(person)
+    console.table(person)
+
+    // Create, read, update, delete
+    person.name = "john";
+    console.table(person)
+
+    delete person.name;
+    console.table(person);
+
+    // Shallow copy object, if there is an object in the object you are copying from, it will not be copied
+    a = {
+        key1: "v1",
+        key2: "v2",
+        key3: {}
+    }
+    b = {
+        ...a
+    }
+
+    console.log(b);
+    console.log(a.key3 == b.key3); // true
+
+    c = structuredClone(a); // Deep copy is expensive
+    console.log(c.key3 == a.key3); // false
+
+</script>
+
+</html>
