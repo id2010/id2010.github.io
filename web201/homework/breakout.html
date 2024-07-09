@@ -130,7 +130,6 @@
                 this.y_vel = -this.y_vel;
             }
             else if (rectPointCollision([this.x, this.y + this.radius], [paddle.x, paddle.y, paddle.width, paddle.height])) {
-                console.log("Ball collided with paddle");
                 this.y = paddle.y - this.radius;
 
                 let hitX = this.x - paddle.x;
