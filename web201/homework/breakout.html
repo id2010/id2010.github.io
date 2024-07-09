@@ -38,7 +38,12 @@
 
     function updateFPS() {
         const now = performance.now();
-        const elapsed = now - lastFrameTime;
+        let elapsed = now - lastFrameTime;
+        if (elapsed == 0) {
+            elapsed = 0.016;
+            console.log("fps is 0!!");
+        }
+
         lastFrameTime = now;
 
         const thisFrame = 1000 / elapsed;
@@ -50,6 +55,7 @@
             framesThisSecond = 0;
             lastFrameTime = now;
         }
+
         dt = 1 / fps;
     }
 
