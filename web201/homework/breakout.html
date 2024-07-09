@@ -11,6 +11,11 @@
             font-family: sans-serif;
         }
 
+        body p {
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+
         canvas#canvas {
             border: solid;
         }
@@ -20,7 +25,7 @@
 <body>
     <h1>Breakout</h1>
     <canvas id="canvas" width="600" height="600"></canvas>
-    <p>If fps is NaN then refresh the page</p>
+    <p>Game is still under development.</p>
 </body>
 
 <script>
@@ -40,8 +45,8 @@
         const now = performance.now();
         let elapsed = now - lastFrameTime;
         if (elapsed == 0) {
-            elapsed = 0.016;
-            console.log("fps is 0!!");
+            elapsed = 0.01;
+            console.log("fps is 0!! set 'fps' to 0.01 to avoid crashes.");
         }
 
         lastFrameTime = now;
