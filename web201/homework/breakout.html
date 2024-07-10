@@ -138,6 +138,10 @@
                 this.x_vel = energy * Math.cos(angle);
                 this.y_vel = -(energy * Math.sin(angle));
             }
+
+            if (this.y + this.radius >= canvas.height) {
+                this.y = 0 + this.radius;
+            }
         }
     }
 
