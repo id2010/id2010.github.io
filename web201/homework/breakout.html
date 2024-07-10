@@ -130,13 +130,13 @@
                 this.y_vel = -this.y_vel;
             }
             else if (rectPointCollision([this.x, this.y + this.radius], [paddle.x, paddle.y, paddle.width, paddle.height])) {
-                this.y = paddle.y - this.radius;
+                // this.y = paddle.y - this.radius;
 
                 let hitX = this.x - paddle.x;
                 let angle = maxAngle-Math.floor((maxAngle - minAngle) / paddle.width * hitX);
                 let energy = (this.d_x**2 + this.d_y**2)**0.5;
-                this.x_vel = energy * Math.cos(angle);
-                this.y_vel = -(energy * Math.sin(angle));
+                this.x_vel = energy * Math.cos(angle * (Math.PI / 180));
+                this.y_vel = -(energy * Math.sin(angle * (Math.PI / 180)));
             }
 
             if (this.y + this.radius >= canvas.height) {
