@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TITLE</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    function get_events() {
+        canvas.addEventListener("mouseover", function(e) {
+            // console.log("mouse over")
+        })
+        canvas.addEventListener("mouseout", function(e) {
+            // console.log("mouse out")
+        })
+        canvas.addEventListener("mouseleave", function(e) {
+            // console.log("mouse leave")
+        })
+        canvas.addEventListener("click", function(e) {
+            console.log("click")
+        })
+        canvas.addEventListener("dblclick", function(e) {
+            console.log("double click")
+        })
+        canvas.addEventListener("mousemove", function(e) {
+            console.log("mouse move", e.offsetX, e.offsetY)
+        })
+        canvas.addEventListener("wheel", function(e) {
+            console.log("mouse wheel", e)
+        })
+    }
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        get_events();
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>

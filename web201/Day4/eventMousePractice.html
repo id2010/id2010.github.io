@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse event practice</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Mouse event practice</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    let circle = {
+        color: "red",
+        x: 300,
+        y: 300,
+        r: 100,
+    }
+
+    let mouse = {
+        x: 0,
+        y: 0
+    }
+
+    colliding = false;
+
+    function pointCircleCollision (p, c) { // point, circle
+        let dis_squared = ((p[0] - c[0])**2 + (p[1] - c[1])**2);
+        return dis_squared <= c[2]**2;
+    }
+
+    function get_events() {
+        canvas.addEventListener("mousemove", function(e) {
+            mouse.x = e.offsetX;
+            mouse.y = e.offsetY;
+        })
+    }
+
+    function draw() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        screen.beginPath();
+        screen.fillStyle = circle.color;
+        screen.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2);
+        screen.fill();
+        screen.closePath();
+
+        screen.beginPath();
+        screen.font = "16px Arial";
+        screen.fillStyle = "black";
+        screen.fillText("Mouse colliding with circle: " + colliding, 20, 20);
+        screen.closePath();
+    }
+
+    function update() {
+        colliding = pointCircleCollision([mouse.x, mouse.y], [circle.x, circle.y, circle.r]);
+
+        if (colliding) {
+            circle.color = "green";
+        } else {
+            circle.color = "red";
+        }
+    }
+
+    function main() {
+        get_events();
+        update();
+        draw();
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>
