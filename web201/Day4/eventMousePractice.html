@@ -30,7 +30,7 @@
         color: "red",
         x: 300,
         y: 300,
-        r: 100,
+        r: 50,
     }
 
     let mouse = {
@@ -40,13 +40,14 @@
 
     colliding = false;
 
-    function pointCircleCollision (p, c) { // point, circle
-        let dis_squared = ((p[0] - c[0])**2 + (p[1] - c[1])**2);
-        return dis_squared <= c[2]**2;
+    function pointCircleCollision(p, c) { // point, circle
+        let dis_squared = ((p[0] - c[0]) ** 2 + (p[1] - c[1]) ** 2);
+        return dis_squared <= c[2] ** 2;
     }
+    // Another way to do circle collision is to see the distance between the mouse and circle
 
     function get_events() {
-        canvas.addEventListener("mousemove", function(e) {
+        canvas.addEventListener("mousemove", function (e) {
             mouse.x = e.offsetX;
             mouse.y = e.offsetY;
         })
@@ -73,8 +74,14 @@
 
         if (colliding) {
             circle.color = "green";
+            if (circle.r < 300) {
+                circle.r++;
+            }
         } else {
             circle.color = "red";
+            if (circle.r > 50) {
+                circle.r--;
+            }
         }
     }
 
