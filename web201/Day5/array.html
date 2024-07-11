@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Arrays</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        let a = [1, 2, 3];
+        // let b = Array();
+
+        console.log(a);
+        a.push(4); // [1, 2, 3] -> [1, 2, 3, 4] adds element at the end
+        console.log(a);
+        a.pop(); // [1, 2, 3] removes last element (pop does not take any arguements)
+        console.log(a);
+        a.unshift(100); // [100, 1, 2, 3] adds element at the start
+        console.log(a);
+        a.shift(); // [1, 2, 3] removes element at the start
+        console.log(a);
+
+        // remove element with index
+        // .splice(index, amount, add);
+        a.splice(1, 1); // [1, 3]
+        console.log(a);
+
+        // create array filled with (10) empty spaces. use .fill to fill the empty spaces with that item.
+        b = new Array(10).fill(0);
+        console.log(b);
+
+        // Reading array
+        c = ["a", "b", "c"];
+        console.log(c[0]); // a
+        c[2] = "d";
+        console.log(c[2]); // d
+
+        /*
+        y is not a copy/clone of x. It is a reference.
+
+        x = {1: 100, 2: 200};
+        y = x;
+
+        y is now a copy of x.
+        y = {...x}
+        */
+    }
+
+    main();
+
+</script>
+
+</html>

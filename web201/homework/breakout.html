@@ -253,14 +253,14 @@
             for (let i = 0; i < bricks.length; i++) {
                 bricks[i].update();
                 if (bricks[i].die) {
-                    // bricks.splice(i, 1);
-                    // i--;
+                    bricks.splice(i, 1);
+                    i--;
                 }
             }
         }
 
         if (bricks.length <= 0) {
-            // console.log("Congratulations, you cleared all the bricks in this level!");
+            console.log("Congratulations, you cleared all the bricks in this level!");
         }
     }
 
@@ -272,19 +272,13 @@
         requestAnimationFrame(main);
     }
 
-    let amount = 8;
-    let left = (canvas.width % amount) / 2;
+    let amount = 10;
     let brick_width = (canvas.width / amount);
-    // console.log(amount);
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < amount; j++) {
-            // bricks.push(new Brick(12 + brick_width * j, 40 + 50 * i)); // for some reason when i add left, it doesnt work, but when i just add the value of left it works (left is 8 but i put 12)
+            bricks.push(new Brick(5 + brick_width * j, 40 + 50 * i));
         }
     }
-    bricks.push(new Brick(canvas.width / 2, canvas.height / 2));
-    bricks.push(new Brick(canvas.width / 4, canvas.height / 4));
-    bricks.push(new Brick(canvas.width / 6, canvas.height / 3));
-    bricks.push(new Brick(canvas.width / 3 * 2, canvas.height / 6 * 4));
 
     main();
 
