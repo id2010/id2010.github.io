@@ -32,6 +32,7 @@
     const canvas = document.querySelector("#canvas");
     const screen = canvas.getContext("2d");
 
+    let bricks = Array();
     let paused = false;
     let held_key = null;
     let pressed_space = null;
@@ -71,6 +72,17 @@
             return true;
         }
         return false;
+    }
+
+    function circleRectCollision(c, r) {
+        // Circle [x, y, r]
+        // Rect   [x, y, w, h]
+        let closest_x = Math.max(r[0], Math.min(c[0], r[0] + r[2]));
+        let closest_y = Math.max(r[1], Math.min(c[1], r[1] + r[3]));
+        let dis_x = c[0] - closest_x;
+        let dis_y = c[1] - closest_y;
+
+        return (dis_x ** 2 + dis_y ** 2) <= (c[2] ** 2);
     }
 
     let keymap = {
@@ -133,10 +145,23 @@
                 // this.y = paddle.y - this.radius;
 
                 let hitX = this.x - paddle.x;
-                let angle = maxAngle-Math.floor((maxAngle - minAngle) / paddle.width * hitX);
-                let energy = (this.d_x**2 + this.d_y**2)**0.5;
+                let angle = maxAngle - Math.floor((maxAngle - minAngle) / paddle.width * hitX);
+                let energy = (this.d_x ** 2 + this.d_y ** 2) ** 0.5;
                 this.x_vel = energy * Math.cos(angle * (Math.PI / 180));
                 this.y_vel = (energy * Math.sin(angle * (Math.PI / 180)));
+            } else {
+                for (brick of bricks) {
+                    if (circleRectCollision([ball.x, ball.y, ball.radius], [brick.x, brick.y, brick.w, brick.h])) {
+                        brick.die = true;
+                        console.log("brick destroyed");
+
+                        if (this.x > brick.x && this.x < brick.right) {
+                            this.y_vel = -this.y_vel;
+                        } else {
+                            this.x_vel = -this.x_vel;
+                        }
+                    }
+                }
             }
 
             if (this.y + this.radius >= canvas.height) {
@@ -145,17 +170,42 @@
         }
     }
 
-    function get_events() {
-    window.addEventListener("keyup", function (e) {
-        held_key = null;
-        if (e.key === " ") {
-            pressed_space = true;
+    class Brick {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.w = 50;
+            this.h = 20;
+            this.right = this.x + this.w;
+            this.bottom = this.y + this.h;
+            this.die = false;
         }
-    });
-    window.addEventListener("keydown", function (e) {
-        held_key = e.key;
-    });
-}
+
+        draw() {
+            screen.beginPath();
+            screen.fillStyle = "black";
+            screen.rect(this.x, this.y, this.w, this.h);
+            screen.fill();
+            screen.closePath();
+        }
+
+        update() {
+            this.right = this.x + this.w;
+            this.bottom = this.y + this.h;
+        }
+    }
+
+    function get_events() {
+        window.addEventListener("keyup", function (e) {
+            held_key = null;
+            if (e.key === " ") {
+                pressed_space = true;
+            }
+        });
+        window.addEventListener("keydown", function (e) {
+            held_key = e.key;
+        });
+    }
 
     function draw() {
         screen.clearRect(0, 0, canvas.width, canvas.height);
@@ -171,9 +221,15 @@
         screen.fill();
         screen.closePath();
 
+        for (brick of bricks) {
+            brick.draw();
+        }
+
         screen.font = "16px Arial";
         screen.fillStyle = "black";
         screen.fillText("fps " + String(Math.round(fps)), 10, 20);
+        screen.fillText("ball X:  " + String(ball.x), 10, 300);
+        screen.fillText("ball Y:  " + String(ball.y), 10, 320);
     }
 
     function update() {
@@ -181,12 +237,27 @@
             paused = !paused;
             pressed_space = false;
         }
+        if (held_key === "R" || held_key === "r") {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+        }
 
         updateFPS();
-        
+
         if (!paused) {
             paddle.update();
             ball.update();
+            for (let i = 0; i < bricks.length; i++) {
+                bricks[i].update();
+                if (bricks[i].die) {
+                    // bricks.splice(i, 1);
+                    // i--;
+                }
+            }
+        }
+
+        if (bricks.length <= 0) {
+            // console.log("Congratulations, you cleared all the bricks in this level!");
         }
     }
 
@@ -197,6 +268,20 @@
 
         requestAnimationFrame(main);
     }
+
+    let amount = 8;
+    let left = (canvas.width % amount) / 2;
+    let brick_width = (canvas.width / amount);
+    // console.log(amount);
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < amount; j++) {
+            // bricks.push(new Brick(12 + brick_width * j, 40 + 50 * i)); // for some reason when i add left, it doesnt work, but when i just add the value of left it works (left is 8 but i put 12)
+        }
+    }
+    bricks.push(new Brick(canvas.width / 2, canvas.height / 2));
+    bricks.push(new Brick(canvas.width / 4, canvas.height / 4));
+    bricks.push(new Brick(canvas.width / 6, canvas.height / 3));
+    bricks.push(new Brick(canvas.width / 3 * 2, canvas.height / 6 * 4));
 
     main();
 
