@@ -141,7 +141,7 @@
             else if (this.y - this.radius <= 0) {
                 this.y_vel = -this.y_vel;
             }
-            else if (rectPointCollision([this.x, this.y + this.radius], [paddle.x, paddle.y, paddle.width, paddle.height])) {
+            else if (circleRectCollision([this.x, this.y, this.radius], [paddle.x, paddle.y, paddle.width, paddle.height])) {
                 // this.y = paddle.y - this.radius;
 
                 let hitX = this.x - paddle.x;
@@ -164,8 +164,10 @@
                 }
             }
 
-            if (this.y + this.radius >= canvas.height) {
-                this.y = 0 + this.radius;
+            if (!rectPointCollision([this.x, this.y], [-5, -5, canvas.width + 5, canvas.height + 5])) {
+                this.x = canvas.width / 2;
+                this.y = paddle.y - ball_properties.radius;
+                console.log("Ball out of bounds. Ball reset.");
             }
         }
     }
@@ -238,8 +240,9 @@
             pressed_space = false;
         }
         if (held_key === "R" || held_key === "r") {
-            ball.x = canvas.width / 2;
-            ball.y = canvas.height / 2;
+            this.x = canvas.width / 2;
+            this.y = paddle.y - ball_properties.radius;
+            console.log("Ball reset. (r)");
         }
 
         updateFPS();
