@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEXT</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TEXT</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        screen.font = "60px monospace";
+        screen.fillStyle = "blue";
+        screen.fillText("Hello", 50, 50);
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>
