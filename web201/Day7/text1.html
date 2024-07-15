@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text 1</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Text 1</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    let y = 300;
+    let x = 200;
+
+    function draw() {
+        screen.moveTo(200, 0);
+        screen.lineTo(200, 500);
+        screen.stroke();
+
+        screen.beginPath();
+        screen.arc(x, 50, 5, 0, Math.PI * 2);
+        screen.fillStyle = "red";
+        screen.fill();
+
+        screen.textAlign = "center";
+        screen.font = "40px monospace";
+        screen.fillText("Hello", x, 30);
+
+        screen.textAlign = "left";
+        screen.font = "40px monospace";
+        screen.fillText("Hello", x, 60);
+
+        screen.textAlign = "right";
+        screen.font = "40px monospace";
+        screen.fillText("Hello", x, 90);
+
+        screen.moveTo(0, y);
+        screen.lineTo(600, y);
+        screen.stroke();
+
+        screen.textAlign = "left";
+        screen.fillText("Hello", 0, y);
+
+        screen.textAlign = "center";
+        screen.textBaseline = "top"
+        screen.fillText("Hello", x, y);
+
+        screen.arc(350, y, 5, 0, Math.PI * 2);
+        screen.fill();
+        screen.textAlign = "left";
+        screen.textBaseline = "middle"
+        screen.fillText("Hello", 350, y);
+    }
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        draw();
+
+        // requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>
