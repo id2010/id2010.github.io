@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text 1 Practice</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Text 1 Practice</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    let centerx = canvas.width / 2;
+    let centery = canvas.height / 2;
+    let x = canvas.width;
+    let y = canvas.height;
+
+    function draw_text(align, baseline, x_pos, y_pos) {
+        screen.font = "40px Monospace";
+        screen.textAlign = align;
+        screen.textBaseline = baseline;
+        screen.fillText("Hello", x_pos, y_pos);
+    }
+
+    function draw() {
+        draw_text("left", "bottom", 0, 0);
+        draw_text("center", "bottom", centerx, 0);
+        draw_text("right", "bottom", x, 0);
+
+        draw_text("left", "middle", 0, centery);
+        draw_text("center", "middle", centerx, centery);
+        draw_text("right", "middle", x, centery);
+
+        draw_text("left", "top", 0, y);
+        draw_text("center", "top", centerx, y);
+        draw_text("right", "top", x, y);
+    }
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        draw();
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>

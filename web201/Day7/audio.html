@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Audio</h1>
+    <audio id="audio_" src="miracle_2-ilya_truhanov.mp3" , controls></audio>
+    <button id="pause">Pause</button>
+    <button id="play">Play</button>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        // let audio = document.querySelector("#audio_");
+        let audio = new Audio("./miracle_2-ilya_truhanov.mp3")
+        pause.addEventListener("click", function(e) {
+            audio.pause();
+        })
+        play.addEventListener("click", function(e) {
+            audio.play();
+        })
+
+        audio.addEventListener("loadedmetadata", function () {
+            console.log("Loaded");
+
+            audio.volume = 0.02;
+            // audio.play();
+            // audio.pause();
+
+            screen.fillText(audio.src, 100, 100);
+            screen.fillText(audio.duration, 100, 110);
+        })
+        audio.addEventListener("play", function() {
+            screen.fillText("Playing", 100, 120);
+        })
+        audio.addEventListener("pause", function() {
+            screen.fillText("Paused", 100, 130);
+        })
+        audio.addEventListener("volumechange", function() {
+            screen.fillText("Volume changed to " + String(audio.volume), 100, 140);
+        })
+        audio.addEventListener("ended", function() {
+            screen.fillText("Ended", 100, 150);
+        })
+        audio.addEventListener("timeupdate", function() {
+            screen.fillText(audio.currentTime, 100, 160);
+        })
+
+        function refresh() {
+            console.log("e");
+            screen.clearRect(0, 0, canvas.width, canvas.height);
+            screen.fillText(audio.src, 100, 100);
+            screen.fillText(audio.duration, 100, 110);
+            screen.fillText("Playing", 100, 120);
+            screen.fillText("Paused", 100, 130);
+            screen.fillText("Volume changed to " + String(audio.volume), 100, 140);
+            screen.fillText("Ended", 100, 150);
+            screen.fillText(audio.currentTime, 100, 150);        screen.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+
+        requestAnimationFrame(refresh);
+    }
+
+    main();
+
+</script>
+
+</html>

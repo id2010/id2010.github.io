@@ -32,6 +32,9 @@
     const canvas = document.querySelector("#canvas");
     const screen = canvas.getContext("2d");
 
+    let bounce = new Audio("./bounce.mp3");
+    bounce.volume = 0.2;
+
     let bricks = Array();
     let paused = false;
     let held_key = null;
@@ -140,6 +143,7 @@
     }
 
     function setup() {
+        bounce.play();
         won = false;
         let amount = 10;
         level++;
@@ -185,14 +189,17 @@
                 this.y -= this.y_vel * dt;
 
                 if (this.x - this.radius <= 0 || this.x + this.radius >= canvas.width) {
+                    bounce.play();
                     this.x_vel = -this.x_vel;
                 }
                 else if (this.y - this.radius <= 0) {
+                    bounce.play();
                     this.y_vel = -this.y_vel;
                 }
                 else if (circleRectCollision([this.x, this.y, this.radius], [paddle.x, paddle.y, paddle.width, paddle.height])) {
                     // this.y = paddle.y - this.radius;
 
+                    bounce.play();
                     let hitX = this.x - paddle.x;
                     let angle = maxAngle - Math.floor((maxAngle - minAngle) / paddle.width * hitX);
                     let energy = (this.d_x ** 2 + this.d_y ** 2) ** 0.5;
@@ -201,6 +208,7 @@
                 } else {
                     for (brick of bricks) {
                         if (circleRectCollision([ball.x, ball.y, ball.radius], [brick.x, brick.y, brick.w, brick.h])) {
+                            bounce.play();
                             brick.die = true;
                             console.log("brick destroyed");
                             points++;
