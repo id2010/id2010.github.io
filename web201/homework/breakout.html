@@ -26,6 +26,7 @@
     <h1>Breakout</h1>
     <canvas id="canvas" width="600" height="600"></canvas>
     <p>Game is nearly finished!</p>
+    <p>Not hearing sounds? Wait for the sounds to load.</p>
 </body>
 
 <script>
@@ -142,8 +143,15 @@
         }
     }
 
-    function setup() {
+    function bounce_sound() {
+        bounce.pause();
+        bounce.currentTime = 0;
         bounce.play();
+    }
+
+    function setup() {
+        paused = true;
+        bounce_sound();
         won = false;
         let amount = 10;
         level++;
@@ -189,17 +197,17 @@
                 this.y -= this.y_vel * dt;
 
                 if (this.x - this.radius <= 0 || this.x + this.radius >= canvas.width) {
-                    bounce.play();
+                    bounce_sound();
                     this.x_vel = -this.x_vel;
                 }
                 else if (this.y - this.radius <= 0) {
-                    bounce.play();
+                    bounce_sound();
                     this.y_vel = -this.y_vel;
                 }
                 else if (circleRectCollision([this.x, this.y, this.radius], [paddle.x, paddle.y, paddle.width, paddle.height])) {
                     // this.y = paddle.y - this.radius;
 
-                    bounce.play();
+                    bounce_sound();
                     let hitX = this.x - paddle.x;
                     let angle = maxAngle - Math.floor((maxAngle - minAngle) / paddle.width * hitX);
                     let energy = (this.d_x ** 2 + this.d_y ** 2) ** 0.5;
@@ -208,7 +216,7 @@
                 } else {
                     for (brick of bricks) {
                         if (circleRectCollision([ball.x, ball.y, ball.radius], [brick.x, brick.y, brick.w, brick.h])) {
-                            bounce.play();
+                            bounce_sound();
                             brick.die = true;
                             console.log("brick destroyed");
                             points++;
