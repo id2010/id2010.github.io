@@ -144,9 +144,8 @@
     }
 
     function bounce_sound() {
-        bounce.pause();
-        bounce.currentTime = 0;
-        bounce.play();
+        bounce_clone = bounce.cloneNode();
+        bounce_clone.play();
     }
 
     function setup() {
