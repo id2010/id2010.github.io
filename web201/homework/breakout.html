@@ -46,6 +46,9 @@
     let level = 1 - 1;
     let won = false;
     let lives = 3 - 1;
+    let color_theme = "white";
+    let bg_img = new Image();
+    bg_img.src = "breakout.avif";
 
     let fps = 0;
     let dt = 0;
@@ -102,12 +105,12 @@
         y_offset: 20,
         width: 140,
         height: 20,
-        color: "black"
+        color: color_theme
     }
 
     let ball_properties = {
         radius: 10,
-        color: "black"
+        color: color_theme
     }
 
     let paddle = {
@@ -131,7 +134,7 @@
 
         draw() {
             screen.beginPath();
-            screen.fillStyle = "black";
+            screen.fillStyle = color_theme;
             screen.rect(this.x, this.y, this.w, this.h);
             screen.fill();
             screen.closePath();
@@ -257,6 +260,7 @@
 
     function draw() {
         screen.clearRect(0, 0, canvas.width, canvas.height);
+        screen.drawImage(bg_img, 0, 0, canvas.width, canvas.height);
 
         screen.beginPath();
         screen.fillStyle = paddle.color;
@@ -274,7 +278,7 @@
         }
 
         screen.font = "16px Arial";
-        screen.fillStyle = "black";
+        screen.fillStyle = color_theme;
         screen.fillText("fps " + String(Math.round(fps)), canvas.width - 60, 20);
         screen.fillText("points: " + String(points), 10, 20);
         screen.fillText("lives: " + String(lives), 100, 20);

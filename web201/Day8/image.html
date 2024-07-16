@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Image</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    let img_html = new Image();
+    img_html.src = "4all.png";
+    document.body.appendChild(img_html);
+    img_hmtl.addEventListener("load", function() {
+        console.log("Loaded image");
+    })
+
+    // let img = new Image();
+    // img.src = "4all.png";
+    // let img_w = img.width;
+    // let img_h = img.height;
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        // screen.drawImage(img, 50, 50, img_w, img_h);
+
+        // img_w--;
+        // img_h -= 2;
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>
