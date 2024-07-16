@@ -16,20 +16,42 @@
             margin-bottom: 0px;
         }
 
-        canvas#canvas {
+        canvas#canvas{
             border: solid;
+            position: relative;
+        }
+
+        canvas#background{
+            border: solid;
+            position: absolute;
+        }
+
+        div#container {
+            text-align: center;
+            display: inline-block;
         }
     </style>
 </head>
 
 <body>
     <h1>Breakout</h1>
-    <canvas id="canvas" width="600" height="600"></canvas>
+    <div id="container">
+        <canvas id="background" width="600" height="600"></canvas>
+        <canvas id="canvas" width="600" height="600"></canvas> 
+    </div>
+
     <p>Game is nearly finished!</p>
-    <p>Not hearing sounds? Wait a bit before unpausing to make sure all the sounds load in.</p>
 </body>
 
 <script>
+    var canvasbg = document.querySelector("#background");
+    var c = canvasbg.getContext("2d");
+    let bg_img = new Image();
+    bg_img.src = "breakout.avif";
+    bg_img.addEventListener("load", function() {
+        c.drawImage(bg_img, 0, 0, canvasbg.width, canvasbg.height)
+    })
+
     const canvas = document.querySelector("#canvas");
     const screen = canvas.getContext("2d");
 
@@ -47,8 +69,6 @@
     let won = false;
     let lives = 3 - 1;
     let color_theme = "white";
-    let bg_img = new Image();
-    bg_img.src = "breakout.avif";
 
     let fps = 0;
     let dt = 0;
@@ -260,7 +280,7 @@
 
     function draw() {
         screen.clearRect(0, 0, canvas.width, canvas.height);
-        screen.drawImage(bg_img, 0, 0, canvas.width, canvas.height);
+        // screen.drawImage(bg_img, 0, 0, canvas.width, canvas.height);
 
         screen.beginPath();
         screen.fillStyle = paddle.color;
