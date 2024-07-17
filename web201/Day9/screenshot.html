@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take screenshot</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+
+        img {
+            border: solid 10px red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Take screenshot</h1>
+    <button id="ss">Take a screenshot</button>
+    <br>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    let btn = document.querySelector("#ss");
+    let x = 0;
+    btn.addEventListener("click", function () {
+            let screenshot = canvas.toDataURL();
+
+            let img = new Image();
+            img.src = screenshot;
+
+            document.body.appendChild(img);
+    })
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        screen.beginPath();
+        screen.fillStyle = "pink"
+        screen.fillRect(x, 200, 50, 50);
+        screen.font = "64px monospace";
+        screen.fillText("Hello", 50, 50);
+
+        x++;
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>
