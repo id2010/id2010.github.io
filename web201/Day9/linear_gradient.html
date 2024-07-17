@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear gradient</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Linear gradient</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    // Linear gradient
+    let g = screen.createLinearGradient(0, 0, canvas.width, canvas.height);
+    g.addColorStop(0, "white");
+    g.addColorStop(1, "black");
+
+    // Use
+    screen.beginPath();
+    screen.fillStyle = g;
+    screen.rect(0, 0, canvas.width, canvas.height);
+    screen.fill();
+    screen.closePath();
+
+    // Radial gradient
+    let rg = screen.createRadialGradient(100, 100, 50, 100, 100, 200);
+    screen.beginPath();
+    rg.addColorStop(0, "white");
+    // rg.addColorStop(0.25, "white");
+    // rg.addColorStop(0.25, "blue");
+    rg.addColorStop(1, "blue");
+    screen.fillStyle = rg;
+    screen.rect(0, 0, 200, 200);
+    screen.fill();
+    screen.closePath();
+
+    main();
+
+</script>
+
+</html>
