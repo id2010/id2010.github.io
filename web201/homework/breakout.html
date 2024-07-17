@@ -16,12 +16,12 @@
             margin-bottom: 0px;
         }
 
-        canvas#canvas{
+        canvas#canvas {
             border: solid;
             position: relative;
         }
 
-        canvas#background{
+        canvas#background {
             border: solid;
             position: absolute;
         }
@@ -37,7 +37,7 @@
     <h1>Breakout</h1>
     <div id="container">
         <canvas id="background" width="600" height="600"></canvas>
-        <canvas id="canvas" width="600" height="600"></canvas> 
+        <canvas id="canvas" width="600" height="600"></canvas>
     </div>
 
     <p>Game is nearly finished!</p>
@@ -48,7 +48,7 @@
     var c = canvasbg.getContext("2d");
     let bg_img = new Image();
     bg_img.src = "breakout.avif";
-    bg_img.addEventListener("load", function() {
+    bg_img.addEventListener("load", function () {
         c.drawImage(bg_img, 0, 0, canvasbg.width, canvasbg.height)
     })
 
@@ -282,19 +282,53 @@
         screen.clearRect(0, 0, canvas.width, canvas.height);
         // screen.drawImage(bg_img, 0, 0, canvas.width, canvas.height);
 
+        // New draw ball & paddle
         screen.beginPath();
-        screen.fillStyle = paddle.color;
+        let g = screen.createLinearGradient(paddle.x, paddle.y, paddle.x + paddle.width, paddle.y + paddle.height);
+        g.addColorStop(0, "white");
+        g.addColorStop(1, "gray");
+        screen.fillStyle = g;
         screen.rect(paddle.x, paddle.y, paddle.width, paddle.height);
         screen.fill();
         screen.closePath();
+        // 
         screen.beginPath();
-        screen.fillStyle = ball.color;
-        screen.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        let rg = screen.createRadialGradient(ball.x, ball.y, ball.radius, ball.x, ball.y, ball.radius * 2);
+        rg.addColorStop(0, "white");
+        rg.addColorStop(0.01, "white");
+        rg.addColorStop(1, "transparent");
+        rg.addColorStop(1, "transparent");
+        screen.fillStyle = rg;
+        screen.rect(0, 0, 600, 600);
         screen.fill();
         screen.closePath();
 
+        // Old draw ball & paddle
+        // screen.beginPath();
+        // screen.fillStyle = paddle.color;
+        // screen.rect(paddle.x, paddle.y, paddle.width, paddle.height);
+        // screen.fill();
+        // screen.closePath();
+        // 
+        // screen.beginPath();
+        // screen.fillStyle = ball.color;
+        // screen.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        // screen.fill();
+        // screen.closePath();
+
         for (brick of bricks) {
-            brick.draw();
+            // Old draw bricks
+            // brick.draw();
+
+            // New draw bricks
+            screen.beginPath();
+            let g = screen.createLinearGradient(brick.x, brick.y, brick.x + brick.w, brick.y + brick.h);
+            g.addColorStop(0, "white");
+            g.addColorStop(1, "gray");
+            screen.fillStyle = g;
+            screen.rect(brick.x, brick.y, brick.w, brick.h);
+            screen.fill();
+            screen.closePath();
         }
 
         screen.font = "16px Arial";
@@ -334,7 +368,7 @@
 
         updateFPS();
 
-        if (!paused && !won && lives>0) {
+        if (!paused && !won && lives > 0) {
             paddle.update();
             ball.update();
             for (let i = 0; i < bricks.length; i++) {

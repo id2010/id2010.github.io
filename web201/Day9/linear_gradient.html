@@ -30,8 +30,6 @@
     let g = screen.createLinearGradient(0, 0, canvas.width, canvas.height);
     g.addColorStop(0, "white");
     g.addColorStop(1, "black");
-
-    // Use
     screen.beginPath();
     screen.fillStyle = g;
     screen.rect(0, 0, canvas.width, canvas.height);
@@ -44,7 +42,7 @@
     rg.addColorStop(0, "white");
     // rg.addColorStop(0.25, "white");
     // rg.addColorStop(0.25, "blue");
-    rg.addColorStop(1, "blue");
+    rg.addColorStop(1, "transparent");
     screen.fillStyle = rg;
     screen.rect(0, 0, 200, 200);
     screen.fill();
