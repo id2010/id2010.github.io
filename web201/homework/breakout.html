@@ -292,6 +292,7 @@
         screen.fill();
         screen.closePath();
         // 
+        // I should make this draw in a circle on 0 0 to the width instead of a rect
         screen.beginPath();
         let rg = screen.createRadialGradient(ball.x, ball.y, ball.radius, ball.x, ball.y, ball.radius * 2);
         rg.addColorStop(0, "white");
