@@ -34,6 +34,7 @@ export let Tetromino = {
         this.max_phase = this.shape[this.phase].length;
         
         // this.phase++;
+        // 
         
         if (this.phase > this.max_phase) {
             this.phase = 0;
