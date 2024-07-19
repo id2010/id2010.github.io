@@ -10,6 +10,7 @@ export let Tetromino = {
     phase: 3,
     max_phase: 0,
     color: "red",
+    fillcolor: "pink",
     draw: function (screen) {
         let current = this.shape[this.phase];
 
@@ -18,8 +19,11 @@ export let Tetromino = {
             for (let c = 0; c < this.shape_width; c++) {
                 if (current[r][c] === 1) {
                     screen.rect(this.x * this.tilesize + c * this.tilesize, this.y * this.tilesize + r * this.tilesize, this.tilesize, this.tilesize);
+                    screen.fillStyle = this.fillcolor;
+                    screen.fill();
                     screen.strokeStyle = this.color;
                     screen.stroke();
+
                     console.log("Drew tetromino");
                 }
             }
