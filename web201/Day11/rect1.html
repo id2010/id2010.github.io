@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangle - 1</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+
+        div#container {}
+
+        canvas#canvas, span#score {
+            display: inline-block;
+            position:relative;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Rectangle - 1</h1>
+
+    <div id="container">
+        <canvas id="canvas" width="300" height="600"></canvas>
+        <span id="score">0</span>
+    </div>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Stroke is for drawing lines, fill is for filling shapes
+        screen.rect(50, 50, 100, 100);
+        screen.lineWidth = "20";
+        screen.strokeStyle = "red";
+        screen.stroke();
+        screen.fillStyle = "blue";
+        screen.fill();
+
+        // requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>

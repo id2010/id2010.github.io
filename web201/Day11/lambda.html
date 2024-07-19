@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lambda</title>
+</head>
+<body>
+    
+    <h1>Lambda</h1>
+
+</body>
+
+<script>
+    // lambda is a anonymous function
+    function a() {
+        return 100;
+    }
+
+    // lambda
+    () => {
+        return 200;
+    }
+
+    // map function:
+    // can transfer one collection to another
+    c = [1, 2, 3]; // -> [2, 4, 6]
+    d = c.map(function(e) {
+        return e*2;
+    })
+
+    console.log(d);
+
+    // create your own map function
+    d = [];
+    c["mymap"] = function(cb) {  // cb means callback function
+        for (let i=0; i < c.length; i++) {
+            d.push(cb(c[i]));
+        }
+        return d;
+    }
+
+    d = c.mymap(function(e) {
+        return e + 200;
+    })
+    console.log(d);
+</script>
+
+</html>
