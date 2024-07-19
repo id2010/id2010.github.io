@@ -1,18 +1,22 @@
-import { square } from "./blocks.js";
+import { square, tilemap } from "./blocks.js";
 
 let canvas = document.querySelector("#canvas");
 let screen = canvas.getContext("2d");
+
+tilemap.get_squares();
 
 function get_events() {
 
 }
 
 function draw() {
-    square.draw(screen);
+    tilemap.draw(screen);
+
+    // square.draw(screen);
 }
 
 function update() {
-
+    tilemap.update();
 }
 
 function main() {
@@ -22,7 +26,7 @@ function main() {
     update();
     draw();
 
-    square.y++;
+    // square.y++;
 
     requestAnimationFrame(main);
 }
