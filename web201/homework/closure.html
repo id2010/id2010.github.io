@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    // functional style:
+    // pass a function as another funtion's parameter
+    // for example: callback function, event listener
+
+    // return a function from another function
+
+    function a() {
+        let price = 100;
+
+        function getPrice() {
+            return price;
+        }
+
+        function setPrice(new_price) {
+            price = new_price
+        }
+
+        return {
+            // api: inner function
+            getPrice: getPrice,
+            setPrice: setPrice
+        };
+    }
+
+    let p = a().setPrice(200);
+    p = a().getPrice();
+    console.log(p);
+
+</script>
+
+</html>

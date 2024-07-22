@@ -4,19 +4,30 @@ export let Tetromino = {
     x: 2 + 1,
     y: 1,
     tilesize: 30,
-    shape: {...Z},
-    shape_width: Z[0][0].length,
-    shape_height: Z[0].length,
+    shape: {...Z.patterns},
+    shape_size: Z.size,
     phase: 3,
     max_phase: 0,
-    color: "red",
-    fillcolor: "pink",
+    color: Z.color,
+    fillcolor: Z.fillcolor,
     draw: function (screen) {
         let current = this.shape[this.phase];
+        
+        let newx = this.x * this.tilesize;
+        let newy = this.y * this.tilesize;
+        let neww = this.shape_size * this.tilesize
+        let newh = this.shape_size * this.tilesize
+        console.log(newx, newy, neww, newh);
+        screen.beginPath();
+        screen.lineWidth = 2;
+        screen.strokeStyle = "green";
+        screen.rect(newx, newy, neww, newh);
+        screen.stroke();
+        screen.closePath();
 
         screen.beginPath();
-        for (let r = 0; r < this.shape_height; r++) {
-            for (let c = 0; c < this.shape_width; c++) {
+        for (let r = 0; r < this.shape_size; r++) {
+            for (let c = 0; c < this.shape_size; c++) {
                 if (current[r][c] === 1) {
                     screen.rect(this.x * this.tilesize + c * this.tilesize, this.y * this.tilesize + r * this.tilesize, this.tilesize, this.tilesize);
                     screen.fillStyle = this.fillcolor;
@@ -24,7 +35,7 @@ export let Tetromino = {
                     screen.strokeStyle = this.color;
                     screen.stroke();
 
-                    console.log("Drew tetromino");
+                    // console.log("Drew tetromino");
                 }
             }
         }
