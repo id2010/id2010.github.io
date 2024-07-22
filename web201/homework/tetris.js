@@ -5,14 +5,37 @@ let screen = canvas.getContext("2d");
 
 tilemap.get_squares();
 
-function get_events() {
+let continue_ = false;
+let pre = Date.now();
+let prev_key = null;
+let single_press = true;
 
+function get_events() {
+    single_press = false;
+    window.addEventListener("keydown", function(e) {
+        if (prev_key === null && e.code !== null) {
+            single_press = true
+        }
+        if (single_press) {
+            if (e.code === "ArrowLeft") {
+                tilemap.tetrominos[0].moveLeft();
+            } else if (e.code === "ArrowRight") {
+                tilemap.tetrominos[0].moveRight();
+            } else if (e.code === "ArrowDown") {
+                tilemap.tetrominos[0].moveDown();
+            } else if (e.code === "ArrowUp") {
+                tilemap.tetrominos[0].Rotate();
+            }
+            // tilemap.tetrominos[0].update_movement();
+            continue_ = true;
+            screen.clearRect(0, 0, canvas.width, canvas.height);
+            draw();
+        }
+    });
 }
 
 function draw() {
     tilemap.draw(screen);
-
-    // square.draw(screen);
 }
 
 function update() {
@@ -20,15 +43,22 @@ function update() {
 }
 
 function main() {
-    screen.clearRect(0, 0, canvas.width, canvas.height);
-
-    get_events();
-    update();
-    draw();
-
-    // square.y++;
-
     requestAnimationFrame(main);
+    
+    draw();
+    
+    let curr = Date.now();
+    if (curr - pre > 1000) {
+        continue_ = true;
+    }
+    if (continue_) {
+        continue_ = false;
+        pre = curr;
+
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+        get_events();
+        update();
+    }
 }
 
 main();
