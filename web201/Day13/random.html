@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random</title>
+</head>
+<body>
+    <h1>Random</h1>
+</body>
+
+<script>
+    console.log(Math.random()); // (0, 1) start, end
+
+    a = ["a", "b", "c", "d"];
+
+    for (let i=0; i<3; i++) {
+        let r = Math.random() * 5 // (0, 4)
+        console.log(a[Math.floor(r)])
+    }
+</script>
+
+</html>

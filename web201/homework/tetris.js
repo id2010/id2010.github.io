@@ -13,7 +13,6 @@ let single_press = true;
 
 function get_events() {
     single_press = false;
-    tilemap.tetrominos[0].can_go_down = true;
     window.addEventListener("keydown", function(e) {
         if (prev_key === null && e.code !== null) {
             single_press = true;
@@ -32,7 +31,6 @@ function get_events() {
             continue_ = true;
             update_y = false;
             tilemap.tetrominos[0].can_go_down = false;
-            // console.log("set update_y to false")
             screen.clearRect(0, 0, canvas.width, canvas.height);
             draw();
         }
@@ -44,7 +42,7 @@ function draw() {
 }
 
 function update() {
-    console.log(tilemap.tetrominos[0].can_go_down);
+    // console.log(tilemap.tetrominos[0].can_go_down);
     tilemap.update(update_y);
 }
 
@@ -63,6 +61,7 @@ function main() {
 
         screen.clearRect(0, 0, canvas.width, canvas.height);
         update_y = true;
+        tilemap.tetrominos[0].can_go_down = true;
         get_events();
         update();
     }
