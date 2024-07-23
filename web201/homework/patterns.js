@@ -1,8 +1,8 @@
 // 7 tetris shapes (tetrimino, check wiki)
 // I, O, T, J/L, S/Z
 export const I = {
-    color: 'Aqua',
-    fillcolor: "mediumaquamarine",
+    color: 'mediumaquamarine',
+    fillcolor: "aqua",
     size:4,
     patterns: [
     [

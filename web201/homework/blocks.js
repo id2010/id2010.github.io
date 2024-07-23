@@ -31,9 +31,9 @@ export class Tetromino {
 
         for (let i = 0; i < 100; i++) {
             let random_shape = Math.floor(Math.random(0, 7) * 7);
-            console.log(all_tetriminos.length);
-            console.log(random_shape);
-            this.shape_ = all_tetriminos[random_shape];
+            // console.log(all_tetriminos.length);
+            // console.log(random_shape);
+            this.shape_ = { ...all_tetriminos[random_shape] };
             this.reset_shape();
         }
     }
