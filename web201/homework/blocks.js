@@ -1,25 +1,29 @@
 import { Z, O, I, J, L, S, T } from "./patterns.js";
 
+console.log(O.patterns.length)
+
 export class Tetromino {
     constructor(shape_, x, y) {
         this.x = x;
         this.y = y - 1;
         this.tilesize = 30;
-        this.shape = {...shape_.patterns};
-        this.shape_size = shape_.size;
+        this.shape_ = { ...shape_ };
+        this.shape = { ...this.shape_.patterns };
+        this.shape_size = this.shape_.size;
+        this.max_phase = this.shape_.patterns.length - 1;
         this.phase = 0;
-        this.max_phase = 0;
-        this.color = shape_.color;
-        this.fillcolor = shape_.fillcolor;
+        this.color = this.shape_.color;
+        this.fillcolor = this.shape_.fillcolor;
         this.moveleft = false;
         this.moveright = false;
         this.movedown = false;
         this.rotate = false;
+        this.can_go_down = true;
     }
 
     draw(screen) {
         let current = this.shape[this.phase];
-        
+
         let newx = this.x * this.tilesize;
         let newy = this.y * this.tilesize;
         let neww = this.shape_size * this.tilesize
@@ -44,8 +48,6 @@ export class Tetromino {
                     screen.fill();
                     screen.lineWidth = 1;
                     screen.stroke();
-
-                    // console.log("Drew tetromino");
                 }
             }
         }
@@ -56,32 +58,51 @@ export class Tetromino {
         if (this.moveleft) {
             this.x--;
             this.moveleft = false;
-            // this.update(move_down = false)
         } else if (this.moveright) {
             this.x++;
             this.moveright = false;
-            // this.update(move_down = false)
         } else if (this.movedown) {
             this.y++;
             this.movedown = false;
-            // this.update(move_down = false)
         } else if (this.rotate) {
             this.phase++;
             this.rotate = false;
-            // this.update(move_down = false)
         }
     }
 
-    update(move_down = true) {
-        this.max_phase = this.shape[this.phase].length;
+    update(move_down) {
 
-        if (move_down) {
+        // console.log(move_down)
+        this.update_movement();
+
+        if (this.can_go_down) {
             this.y++;
         }
-        this.update_movement();
-        
+
         if (this.phase > this.max_phase || this.phase < 0) {
             this.phase = 0;
+        }
+        console.log(this.max_phase)
+
+        let current = this.shape[this.phase];
+        for (let r = 0; r < this.shape_size; r++) {
+            for (let c = 0; c < this.shape_size; c++) {
+                let rr = this.y + r;
+                let cc = this.x + c;
+                // console.log(cc, rr)
+                if (current[r][c] === 1) {
+                    if (rr >= 20) {
+                        this.y--;
+                        break
+                    } else if (cc < 0) {
+                        this.x++;
+                        break
+                    } else if (cc >= 10) {
+                        this.x--;
+                        break
+                    }
+                }
+            }
         }
     }
 
@@ -92,11 +113,11 @@ export class Tetromino {
     moveRight() {
         this.moveright = true;
     }
-    
+
     moveDown() {
         this.movedown = true;
     }
-    
+
     Rotate() {
         this.rotate = true;
     }
@@ -107,14 +128,14 @@ export let tilemap = {
     height: 20,
     size: 30,
     tetrominos: [new Tetromino(Z, 2, 0)],
-    squares: [],
+    squares_: [],
     get_squares: (function () {
         for (let r = 0; r < this.height; r++) {
             for (let c = 0; c < this.width; c++) {
                 let s = { ...square };
                 s.x = c * s.w;
                 s.y = r * s.h;
-                this.squares.push(s);
+                this.squares_.push(s);
             }
         }
     }),
@@ -122,7 +143,7 @@ export let tilemap = {
     draw: function (screen) {
         screen.beginPath();
         screen.strokeStyle = "skyblue";
-        this.squares.forEach(e => {
+        this.squares_.forEach(e => {
             screen.rect(e.x, e.y, e.w, e.h);
             screen.stroke();
         });
@@ -132,9 +153,10 @@ export let tilemap = {
             tetromino.draw(screen);
         });
     },
-    update: function () {
+    update: function (move_down) {
+        // console.log(move_down)
         this.tetrominos.forEach(tetromino => {
-            tetromino.update();
+            tetromino.update(move_down);
         });
     }
 }

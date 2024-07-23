@@ -6,15 +6,17 @@ let screen = canvas.getContext("2d");
 tilemap.get_squares();
 
 let continue_ = false;
+let update_y = true;
 let pre = Date.now();
 let prev_key = null;
 let single_press = true;
 
 function get_events() {
     single_press = false;
+    tilemap.tetrominos[0].can_go_down = true;
     window.addEventListener("keydown", function(e) {
         if (prev_key === null && e.code !== null) {
-            single_press = true
+            single_press = true;
         }
         if (single_press) {
             if (e.code === "ArrowLeft") {
@@ -28,6 +30,9 @@ function get_events() {
             }
             // tilemap.tetrominos[0].update_movement();
             continue_ = true;
+            update_y = false;
+            tilemap.tetrominos[0].can_go_down = false;
+            // console.log("set update_y to false")
             screen.clearRect(0, 0, canvas.width, canvas.height);
             draw();
         }
@@ -39,7 +44,8 @@ function draw() {
 }
 
 function update() {
-    tilemap.update();
+    console.log(tilemap.tetrominos[0].can_go_down);
+    tilemap.update(update_y);
 }
 
 function main() {
@@ -56,6 +62,7 @@ function main() {
         pre = curr;
 
         screen.clearRect(0, 0, canvas.width, canvas.height);
+        update_y = true;
         get_events();
         update();
     }
