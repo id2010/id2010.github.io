@@ -2,6 +2,7 @@ import { Z, O, I, J, L, S, T, all_tetriminos } from "./patterns.js";
 
 export class Tetromino {
     constructor(shape_, x, y) {
+        this.reset();
         this.x = x;
         this.y = y - 1;
         this.tilesize = 30;
@@ -13,7 +14,7 @@ export class Tetromino {
         this.rotate = false;
         this.can_go_down = true;
         this.dead = false;
-        this.reset_shape();
+        // this.reset_shape();
     }
 
     reset_shape() {
@@ -72,7 +73,7 @@ export class Tetromino {
         screen.closePath();
     }
 
-    update_movement() {
+    update_movement(tm) {
         if (this.moveleft) {
             this.x--;
             this.moveleft = false;
@@ -82,21 +83,43 @@ export class Tetromino {
         } else if (this.movedown) {
             this.y++;
             this.movedown = false;
-        } else if (this.rotate) {
-            this.phase++;
-            this.rotate = false;
         }
     }
 
     update(move_down, tm) { // tm = tilemap
-        this.update_movement();
+        this.update_movement(tm);
 
         if (this.can_go_down) {
             this.y++;
         }
 
-        if (this.phase > this.max_phase || this.phase < 0) {
-            this.phase = 0;
+        if (this.rotate) {
+            this.phase++;
+            this.rotate = false;
+            
+            if (this.phase > this.max_phase || this.phase < 0) {
+                this.phase = 0;
+            }
+            let current = this.shape[this.phase];
+
+
+            let break_all = false;
+            for (let r = 0; r < this.shape_size; r++) {
+                for (let c = 0; c < this.shape_size; c++) {
+                    let rr = this.y + r;
+                    let cc = this.x + c;
+                    if (current[r][c] === 1) {
+                        if (tm[rr][cc].color !== "none") {
+                            this.phase--;
+                            break_all = true;
+                            break;
+                        }
+                    }
+                if (break_all) {
+                    break;
+                }
+                }
+            }
         }
 
         let current = this.shape[this.phase];
