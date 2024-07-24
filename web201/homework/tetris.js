@@ -10,6 +10,7 @@ let update_y = true;
 let pre = Date.now();
 let prev_key = null;
 let single_press = true;
+let score = 0;
 
 function get_events() {
     single_press = false;
@@ -43,7 +44,7 @@ function draw() {
 
 function update() {
     // console.log(tilemap.tetrominos[0].can_go_down);
-    tilemap.update(update_y);
+    return tilemap.update(update_y);
 }
 
 function main() {
@@ -53,17 +54,24 @@ function main() {
     
     let curr = Date.now();
     if (curr - pre > 1000) {
+        tilemap.tetrominos[0].y++;
         continue_ = true;
+        pre = curr;
     }
     if (continue_) {
         continue_ = false;
-        pre = curr;
 
         // screen.clearRect(0, 0, canvas.width, canvas.height);
         update_y = true;
-        tilemap.tetrominos[0].can_go_down = true;
         get_events();
-        update();
+        tilemap.tetrominos[0].can_go_down = true;
+        let v = update();
+        console.log(v);
+        if (v) {
+            score++;
+            console.log("Scored");
+        }
+        document.querySelector("#score").textContent = String(score);
     }
 }
 

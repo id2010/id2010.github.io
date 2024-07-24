@@ -3,8 +3,8 @@ import { Z, O, I, J, L, S, T, all_tetriminos } from "./patterns.js";
 export class Tetromino {
     constructor(shape_, x, y) {
         this.reset();
-        this.x = x;
-        this.y = y - 1;
+        // this.x = x;
+        // this.y = y - 1;
         this.tilesize = 30;
         this.shape_ = { ...shape_ };
         this.phase = 0;
@@ -26,7 +26,7 @@ export class Tetromino {
     }
 
     reset() {
-        this.y = 0;
+        this.y = -3;
         this.x = 3;
         this.dead = false;
 
@@ -35,8 +35,15 @@ export class Tetromino {
             // let random_shape = Math.floor(Math.random(0, 7) * 7);
             // console.log(all_tetriminos.length);
             // console.log(random_shape);
-            this.shape_ = { ...all_tetriminos[random_shape] };
+            // this.shape_ = { ...all_tetriminos[random_shape] };
+            this.shape_ = { ...all_tetriminos[0] };
             this.reset_shape();
+        }
+    }
+
+    reset_phase() {
+        if (this.phase > this.max_phase || this.phase < 0) {
+            this.phase = 0;
         }
     }
 
@@ -77,29 +84,30 @@ export class Tetromino {
         if (this.moveleft) {
             this.x--;
             this.moveleft = false;
+            // this.y--;
         } else if (this.moveright) {
             this.x++;
             this.moveright = false;
+            // this.y--;
         } else if (this.movedown) {
             this.y++;
             this.movedown = false;
+            // this.y--;
         }
     }
 
     update(move_down, tm) { // tm = tilemap
         this.update_movement(tm);
 
-        if (this.can_go_down) {
-            this.y++;
-        }
+        // if (this.can_go_down) {
+            // this.y++;
+        // }
 
         if (this.rotate) {
             this.phase++;
             this.rotate = false;
             
-            if (this.phase > this.max_phase || this.phase < 0) {
-                this.phase = 0;
-            }
+            this.reset_phase();
             let current = this.shape[this.phase];
 
 
@@ -108,7 +116,7 @@ export class Tetromino {
                 for (let c = 0; c < this.shape_size; c++) {
                     let rr = this.y + r;
                     let cc = this.x + c;
-                    if (current[r][c] === 1) {
+                    if (current[r][c] === 1 || cc < 0 || cc > 19) {
                         if (tm[rr][cc].color !== "none") {
                             this.phase--;
                             break_all = true;
@@ -123,6 +131,7 @@ export class Tetromino {
         }
 
         let current = this.shape[this.phase];
+        let break_all = false;
         for (let r = 0; r < this.shape_size; r++) {
             for (let c = 0; c < this.shape_size; c++) {
                 let rr = this.y + r;
@@ -131,15 +140,21 @@ export class Tetromino {
                     if (rr >= 20) {
                         this.y--;
                         this.dead = true;
-                        break
+                        break_all = true;
+                        break;
                     } else if (cc < 0) {
                         this.x++;
-                        break
+                        break_all = true;
+                        break;
                     } else if (cc >= 10) {
                         this.x--;
-                        break
+                        break_all = true;
+                        break;
                     }
                 }
+            }
+            if (break_all) {
+                break;
             }
         } // collision. if collide then go up by 1 and die
         for (let r = 0; r < this.shape_size; r++) {
@@ -147,8 +162,10 @@ export class Tetromino {
                 let rr = this.y + r;
                 let cc = this.x + c;
                 if (current[r][c] === 1) {
-                    if (tm[rr][cc].color !== "none") {
+                    // console.log(tilemap.squares[rr][cc].color)
+                    if (tilemap.squares[rr][cc].color !== "none") {
                         this.y--;
+                        this.reset_phase();
                         this.dead = true;
                         return;
                     }
@@ -220,12 +237,13 @@ export let tilemap = {
                 }
             }
         }
-
+        
         this.tetrominos.forEach(tetromino => {
             tetromino.draw(screen);
         });
     },
     update: function (move_down) {
+        let score_point = false;
         this.tetrominos.forEach(tetromino => {
             tetromino.update(move_down, this.squares);
             if (tetromino.dead) {                
@@ -241,8 +259,27 @@ export let tilemap = {
                     }
                 }
                 tetromino.reset();
-            }
+        }
         });
+        // See rows
+        for (let r = 19; r >= 0; r--) {
+            let all_1s = true;
+            for (let c = 0; c <= 9; c++) {
+                // console.log(this.squares[r][c].color)
+                let Color = this.squares[r][c].color
+                if (Color === "none") {
+                    all_1s = false;
+                }
+            }
+            if (all_1s) {
+                // score
+                score_point = true;
+                for (let rr = r; rr >= 1; rr--) {
+                    this.squares[rr] = this.squares[rr - 1];
+                }
+            }
+        }
+        return score_point;
     }
 }
 
