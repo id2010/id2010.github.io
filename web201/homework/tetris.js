@@ -3,8 +3,6 @@ import { square, tilemap } from "./blocks.js";
 let canvas = document.querySelector("#canvas");
 let screen = canvas.getContext("2d");
 
-tilemap.get_squares();
-
 let continue_ = false;
 let update_y = true;
 let pre = Date.now();
@@ -12,6 +10,20 @@ let pre2 = Date.now();
 let prev_key = null;
 let single_press = true;
 let score = 0;
+
+function restart() {
+    tilemap.restart();
+
+    continue_ = false;
+    update_y = true;
+    pre = Date.now();
+    pre2 = Date.now();
+    prev_key = null;
+    single_press = true;
+    score = 0;
+}
+
+restart();
 
 function get_events() {
     single_press = false;
@@ -82,9 +94,11 @@ function main() {
         }
     } else {
         screen.fillStyle = "black";
-        screen.font = "32px Urisa";
+        screen.font = "32px Ariel";
         screen.textAlign = "center";
-        screen.fillText("You lose", canvas.width / 2, 100);
+        screen.fillText("Game over!", canvas.width / 2, 100);
+        screen.font = "24px Ariel";
+        screen.fillText("Refresh to page to try again.", canvas.width / 2, 130);
     }
 }
 

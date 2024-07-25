@@ -100,13 +100,13 @@ export class Tetromino {
         this.update_movement(tm);
 
         // if (this.can_go_down) {
-            // this.y++;
+        // this.y++;
         // }
 
         if (this.rotate) {
             this.phase++;
             this.rotate = false;
-            
+
             this.reset_phase();
             let current = this.shape[this.phase];
 
@@ -123,9 +123,9 @@ export class Tetromino {
                             break;
                         }
                     }
-                if (break_all) {
-                    break;
-                }
+                    if (break_all) {
+                        break;
+                    }
                 }
             }
         }
@@ -199,6 +199,18 @@ export let tilemap = {
     tetrominos: [new Tetromino(Z, 3, 0)],
     squares_: [],
     squares: [],
+
+    restart: function () {
+        this.lose = false;
+        this.width = 10;
+        this.height = 20;
+        this.size = 30;
+        this.tetrominos = [new Tetromino(Z, 3, 0)];
+        this.squares_ = [];
+        this.squares = [];
+        this.get_squares();
+    },
+
     get_squares: (function () {
         for (let r = 0; r < this.height; r++) {
             for (let c = 0; c < this.width; c++) {
@@ -224,7 +236,7 @@ export let tilemap = {
         //     screen.stroke();
         // });
         // screen.closePath();
-        
+
         for (let r = 0; r < this.height; r++) {
             for (let c = 0; c < this.width; c++) {
                 if (this.squares[r][c].color !== "none") {
@@ -238,7 +250,7 @@ export let tilemap = {
                 }
             }
         }
-        
+
         this.tetrominos.forEach(tetromino => {
             tetromino.draw(screen);
         });
@@ -247,7 +259,7 @@ export let tilemap = {
         let score_point = false;
         this.tetrominos.forEach(tetromino => {
             tetromino.update(move_down, this.squares);
-            if (tetromino.dead) {                
+            if (tetromino.dead) {
                 let current = tetromino.shape[tetromino.phase];
                 for (let r = 0; r < tetromino.shape_size; r++) {
                     for (let c = 0; c < tetromino.shape_size; c++) {
@@ -260,7 +272,7 @@ export let tilemap = {
                     }
                 }
                 tetromino.reset();
-        }
+            }
         });
 
         let all_0s = true;
