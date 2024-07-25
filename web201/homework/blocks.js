@@ -55,6 +55,7 @@ export class Tetromino {
         screen.beginPath();
         for (let r = 0; r < this.shape_size; r++) {
             for (let c = 0; c < this.shape_size; c++) {
+                // console.log(current)
                 if (current[r][c] === 1) {
                     screen.rect(this.x * this.tilesize + c * this.tilesize, this.y * this.tilesize + r * this.tilesize, this.tilesize, this.tilesize);
                     screen.lineWidth = 4;
@@ -125,6 +126,7 @@ export class Tetromino {
                     if (tm[rr][cc].color !== "none") {
                         this.y--;
                         this.dead = true;
+                        return;
                     }
                 }
             }
