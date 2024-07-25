@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop</title>
+</head>
+<body>
+    <h1>Loop</h1>
+</body>
+
+<script>
+    // Instead of using signs to break out of nested loops, you can use this
+    abc: // Breaks to the line abc is on
+    for (let i = 0; i < 5; i++) {
+        for (let j=0; i<6; j++) {
+            if (j === 3) {
+                console.log(i, j);
+                console.log("break");
+                break abc;
+            }
+        }
+    }
+    console.log("breaked to this line")
+</script>
+
+</html>

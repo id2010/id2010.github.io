@@ -31,8 +31,8 @@ export class Tetromino {
         this.dead = false;
 
         for (let i = 0; i < 1; i++) {
-            let random_shape = Math.floor(Math.random(0, 6) * 6);
-            // let random_shape = Math.floor(Math.random(0, 7) * 7);
+            // let random_shape = Math.floor(Math.random(0, 6) * 6);
+            let random_shape = Math.floor(Math.random(0, 7) * 7);
             // console.log(all_tetriminos.length);
             // console.log(random_shape);
             this.shape_ = { ...all_tetriminos[random_shape] };
