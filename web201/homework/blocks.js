@@ -86,7 +86,7 @@ export class Tetromino {
         }
     }
 
-    update(move_down) {
+    update(move_down, tm) { // tm = tilemap
         this.update_movement();
 
         if (this.can_go_down) {
@@ -113,6 +113,18 @@ export class Tetromino {
                     } else if (cc >= 10) {
                         this.x--;
                         break
+                    }
+                }
+            }
+        } // collision. if collide then go up by 1 and die
+        for (let r = 0; r < this.shape_size; r++) {
+            for (let c = 0; c < this.shape_size; c++) {
+                let rr = this.y + r;
+                let cc = this.x + c;
+                if (current[r][c] === 1) {
+                    if (tm[rr][cc].color !== "none") {
+                        this.y--;
+                        this.dead = true;
                     }
                 }
             }
@@ -189,7 +201,7 @@ export let tilemap = {
     },
     update: function (move_down) {
         this.tetrominos.forEach(tetromino => {
-            tetromino.update(move_down);
+            tetromino.update(move_down, this.squares);
             if (tetromino.dead) {                
                 let current = tetromino.shape[tetromino.phase];
                 for (let r = 0; r < tetromino.shape_size; r++) {
