@@ -31,13 +31,13 @@ function get_events() {
             continue_ = true;
             update_y = false;
             tilemap.tetrominos[0].can_go_down = false;
-            screen.clearRect(0, 0, canvas.width, canvas.height);
             draw();
         }
     });
 }
 
 function draw() {
+    screen.clearRect(0, 0, canvas.width, canvas.height);
     tilemap.draw(screen);
 }
 
@@ -59,7 +59,7 @@ function main() {
         continue_ = false;
         pre = curr;
 
-        screen.clearRect(0, 0, canvas.width, canvas.height);
+        // screen.clearRect(0, 0, canvas.width, canvas.height);
         update_y = true;
         tilemap.tetrominos[0].can_go_down = true;
         get_events();
