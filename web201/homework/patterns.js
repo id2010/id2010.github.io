@@ -193,4 +193,5 @@ export const Z = {
 ]
 };
 
-export let all_tetriminos = [I, O, T, L, J, S, Z];
+// export let all_tetriminos = [I, O, T, L, J, S, Z];
+export let all_tetriminos = [I, T, L, J, S, Z];
