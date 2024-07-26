@@ -8,13 +8,14 @@ tilemap.get_squares();
 let continue_ = false;
 let update_y = true;
 let pre = Date.now();
+let pre2 = Date.now();
 let prev_key = null;
 let single_press = true;
 let score = 0;
 
 function get_events() {
     single_press = false;
-    window.addEventListener("keydown", function(e) {
+    window.addEventListener("keydown", function (e) {
         if (prev_key === null && e.code !== null) {
             single_press = true;
         }
@@ -47,31 +48,43 @@ function update() {
     return tilemap.update(update_y);
 }
 
+draw();
+
 function main() {
     requestAnimationFrame(main);
-    
-    draw();
-    
-    let curr = Date.now();
-    if (curr - pre > 1000) {
-        tilemap.tetrominos[0].y++;
-        continue_ = true;
-        pre = curr;
-    }
-    if (continue_) {
-        continue_ = false;
 
-        // screen.clearRect(0, 0, canvas.width, canvas.height);
-        update_y = true;
-        get_events();
-        tilemap.tetrominos[0].can_go_down = true;
-        let v = update();
-        console.log(v);
-        if (v) {
-            score++;
-            console.log("Scored");
+    if (!tilemap.lose) {    
+        let curr = Date.now();
+        if (curr - pre2 > 100) {
+            pre2 = curr;
+            if (curr - pre > 1000) {
+                tilemap.tetrominos[0].y++;
+                continue_ = true;
+                pre = curr;
+            }
+            if (continue_) {
+                continue_ = false;
+
+                // screen.clearRect(0, 0, canvas.width, canvas.height);
+                update_y = true;
+                get_events();
+                tilemap.tetrominos[0].can_go_down = true;
+                let v = update();
+                draw();
+                // console.log(v);
+                if (v) {
+                    score++;
+                    console.log("Scored");
+                }
+
+                document.querySelector("#score").textContent = String(score);
+            }
         }
-        document.querySelector("#score").textContent = String(score);
+    } else {
+        screen.fillStyle = "black";
+        screen.font = "32px Urisa";
+        screen.textAlign = "center";
+        screen.fillText("You lose", canvas.width / 2, 100);
     }
 }
 

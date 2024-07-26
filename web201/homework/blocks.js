@@ -192,6 +192,7 @@ export class Tetromino {
 }
 
 export let tilemap = {
+    lose: false,
     width: 10,
     height: 20,
     size: 30,
@@ -216,13 +217,13 @@ export let tilemap = {
     }),
 
     draw: function (screen) {
-        screen.beginPath();
-        screen.strokeStyle = "skyblue";
-        this.squares_.forEach(e => {
-            screen.rect(e.x, e.y, e.w, e.h);
-            screen.stroke();
-        });
-        screen.closePath();
+        // screen.beginPath();
+        // screen.strokeStyle = "skyblue";
+        // this.squares_.forEach(e => {
+        //     screen.rect(e.x, e.y, e.w, e.h);
+        //     screen.stroke();
+        // });
+        // screen.closePath();
         
         for (let r = 0; r < this.height; r++) {
             for (let c = 0; c < this.width; c++) {
@@ -261,10 +262,23 @@ export let tilemap = {
                 tetromino.reset();
         }
         });
+
+        let all_0s = true;
+        for (let c = 0; c < 10; c++) {
+            let Color = this.squares[3][c].color
+            if (Color !== "none") {
+                all_0s = false;
+            }
+        }
+        if (!all_0s) {
+            this.lose = true;
+        }
+
         // See rows
+        let all_1s = true;
         for (let r = 19; r >= 0; r--) {
-            let all_1s = true;
-            for (let c = 0; c <= 9; c++) {
+            all_1s = true;
+            for (let c = 0; c < 10; c++) {
                 // console.log(this.squares[r][c].color)
                 let Color = this.squares[r][c].color
                 if (Color === "none") {
