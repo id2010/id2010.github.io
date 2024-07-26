@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+</head>
+<body>
+    <!-- This course: Web game, web animation, job -->
+</body>
+
+<script>
+    info = {
+        numOfWords: 100,
+        encode: "UTF-8"
+    }
+
+    // json (javascript object notation)
+    // object -> json
+    jsonObject = JSON.stringify(info);
+
+    console.log(jsonObject);
+    
+    infoInJson = {
+      "numOfWords": 100,  // All keys are string
+      "encode: ": "UTF-8" 
+    }
+
+    // json -> object
+    info = JSON.parse(jsonObject);
+    console.log(info);
+
+    // json is good for config file or transfering data
+
+</script>
+
+</html>

@@ -35,19 +35,12 @@ export const I = {
 export const O = {
     color: 'yellow',
     fillcolor: "lightyellow",
-    size:4,
+    size:3,
     patterns: [
     [
-        [0, 0, 0, 0],
-        [0, 1, 1, 0],
-        [0, 1, 1, 0],
-        [0, 0, 0, 0],
-    ],
-    [
-        [0, 0, 0, 0],
-        [0, 1, 1, 0],
-        [0, 1, 1, 0],
-        [0, 0, 0, 0],
+        [1, 1, 0],
+        [1, 1, 0],
+        [0, 0, 0],
     ]
 ]
 };

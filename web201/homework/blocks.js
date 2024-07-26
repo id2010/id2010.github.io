@@ -29,8 +29,9 @@ export class Tetromino {
         this.y = -3;
         this.x = 3;
         this.dead = false;
+        let repick = true;
 
-        for (let i = 0; i < 1; i++) {
+        while (true) {
             // let random_shape = Math.floor(Math.random(0, 6) * 6);
             let random_shape = Math.floor(Math.random(0, 7) * 7);
             // console.log(all_tetriminos.length);
@@ -38,6 +39,24 @@ export class Tetromino {
             this.shape_ = { ...all_tetriminos[random_shape] };
             // this.shape_ = { ...all_tetriminos[0] };
             this.reset_shape();
+
+            repick = true;
+            let current = this.shape[this.phase];
+            for (let r = 0; r < this.shape_size; r++) {
+                for (let c = 0; c < this.shape_size; c++) {
+                    if (current === 1) {
+                        repick = false;
+                        break;
+                    }
+                    if (!repick) {
+                        break;
+                    }
+                }
+            }
+            if (!repick) {
+                break;
+            }
+            break;
         }
     }
 
@@ -54,12 +73,12 @@ export class Tetromino {
         let newy = this.y * this.tilesize;
         let neww = this.shape_size * this.tilesize
         let newh = this.shape_size * this.tilesize
-        screen.beginPath();
-        screen.lineWidth = 2;
-        screen.strokeStyle = "green";
-        screen.rect(newx, newy, neww, newh);
-        screen.stroke();
-        screen.closePath();
+        // screen.beginPath();
+        // screen.lineWidth = 2;
+        // screen.strokeStyle = "green";
+        // screen.rect(newx, newy, neww, newh);
+        // screen.stroke();
+        // screen.closePath();
 
         screen.beginPath();
         for (let r = 0; r < this.shape_size; r++) {
@@ -163,11 +182,13 @@ export class Tetromino {
                 let cc = this.x + c;
                 if (current[r][c] === 1) {
                     // console.log(tilemap.squares[rr][cc].color)
-                    if (tilemap.squares[rr][cc].color !== "none") {
-                        this.y--;
-                        this.reset_phase();
-                        this.dead = true;
-                        return;
+                    if (this.y > 0) {
+                        if (tilemap.squares[rr][cc].color !== "none") {
+                            this.y--;
+                            this.reset_phase();
+                            this.dead = true;
+                            return;
+                        }
                     }
                 }
             }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic OOP</title>
+</head>
+<body>
+    <h1>Basic object oriented programming</h1>
+</body>
+
+<script>
+    // Create object
+    person = {
+        name: "Jason",
+        age: 40
+    }
+
+    // Clone another object
+    personClone = { ...person };
+    personClone.name = "Fred";
+    personClone.age = 50;
+
+    // Constructor is more consistant way to generate objects
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        return this;
+    }
+    jason = new Person("Jason", 40);
+    fred = new Person("Fred", 50);
+
+    console.table(jason);
+    console.table(fred);
+
+    /*
+    construtor is a function
+    by convention, constructor name is capitalized.
+    */
+
+    // by capitalize constructor name it can tell people its a constructor
+
+    alice = Person("Alice", 40); // causes side-effects, why?
+    console.log(alice);
+    // 1. if you dont use "new" then it has no return value or can pollute global namespace
+    // 2. pollutes global namespace
+
+    cassi = new Person("Cassi", 21);
+    console.log(cassi);
+    // what is "this"?
+    // "this" is a empty object ready to be assembled
+
+</script>
+
+</html>
