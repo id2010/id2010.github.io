@@ -1,5 +1,13 @@
 import { square, tilemap } from "./blocks.js";
 
+var canvasbg = document.querySelector("#background");
+var c = canvasbg.getContext("2d");
+let bg_img = new Image();
+bg_img.src = "bgimg.jpg";
+bg_img.addEventListener("load", function () {
+    c.drawImage(bg_img, -50, 0, 350 + canvasbg.width, canvasbg.height)
+})
+
 let canvas = document.querySelector("#canvas");
 let screen = canvas.getContext("2d");
 

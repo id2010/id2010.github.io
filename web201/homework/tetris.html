@@ -38,6 +38,14 @@
             position: relative;
             vertical-align: top;
         }
+
+        div#whole {
+            display: inline-block;
+        }
+
+        canvas {
+            position: absolute;
+        }
     </style>
 </head>
 
@@ -46,7 +54,10 @@
     <div id="container">
         <div id="container2">
             <h1>Tetris</h1>
-            <canvas id="canvas" width="300" height="600"></canvas>
+            <div id="whole">
+                <canvas id="background" width="300" height="600"></canvas>
+                <canvas id="canvas" width="300" height="600"></canvas>
+            </div>
             <p>Controls: Up, Left, Down, Right arrow keys.</p>
             <p>Do not hold the keys, this will cause lag!</p>
         </div>
