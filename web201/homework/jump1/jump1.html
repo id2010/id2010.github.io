@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump 1</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Jump 1</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    function circleRectCollision(c, r) {
+        // Circle [x, y, r]
+        // Rect .x .y .w .h
+        let closest_x = Math.max(r.x, Math.min(c[0], r.x + r.w));
+        let closest_y = Math.max(r.y, Math.min(c[1], r.y + r.h));
+        let dis_x = c[0] - closest_x;
+        let dis_y = c[1] - closest_y;
+
+        // console.log(c, r)
+        // console.log((dis_x ** 2 + dis_y ** 2) <= (c[2] ** 2));
+        return (dis_x ** 2 + dis_y ** 2) <= (c[2] ** 2);
+    }
+
+    class Rect {
+        constructor(x, y, w, h) {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+        }
+    }
+
+    function Platform(x, y, w, h) {
+        this.r = new Rect(x, y, w, h);
+
+        this.draw = function () {
+            screen.beginPath();
+            screen.rect(this.r.x, this.r.y, this.r.w, this.r.h);
+            screen.fill();
+            screen.closePath();
+        }
+    }
+
+    function Ball() {
+        this.r = 15;
+        this.x = 0;
+        this.y = canvas.height - this.r;
+        this.dy = 0;
+        this.dx = 0;
+        this.jump_h = -20
+
+        this.draw = function () {
+            screen.beginPath();
+            screen.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            screen.fill();
+            screen.closePath();
+        }
+        this.update = function (platforms) {
+
+            this.y += this.dy;
+            this.x += this.dx;
+
+            // Gravity
+            this.dy += 1;
+            this.dx = 3;
+
+            // Ensuring that le speed cannot go faster than the ball's diameter so that it can collide all time
+            if (this.dy > this.r * 2) {
+                this.dy = this.r * 2
+            }
+
+            platforms.forEach(platform => {
+                //console.log(platform.r)
+                // console.log(this.x)
+                if (circleRectCollision([this.x, this.y, this.r], platform.r)) {
+                    let top = false;
+                    let bottom = false;
+                    
+                    // if (this.y - this.r < platform.r.y && (this.y - this.r < platform.r.y + platform.r.h)) {
+                    if (this.y - this.r < platform.r.y) {
+                        this.y = platform.r.y - this.r;
+                        this.dy = 0;
+                        top = true;
+                    }
+                    else if (this.y - this.r < platform.r.y + platform.r.h) {
+                        this.y = platform.r.y + platform.r.h + this.r;
+                        this.dy = 0;
+                        bottom = true;
+                    }
+                    // else if (this.x + this.r > platform.r.x) {
+                    //     this.x = platform.r.x - this.r;
+                    // }  // x doesnt work yet
+                }
+            });
+
+            if (this.y > canvas.height - this.r) {
+                this.y = canvas.height - this.r;
+            }
+        }
+    }
+
+    let platforms = [
+        new Platform(200, 500, 100, 20),
+        new Platform(400, 400, 100, 20),
+        new Platform(100, 100, 100, 20)
+    ];
+    let ball = new Ball();
+
+    function get_events() {
+        window.addEventListener("keypress", function (e) {
+            // console.log(e.key)
+            if (e.key == "w") {
+                ball.dy = ball.jump_h;
+            } else if (e.key == "d") {
+                ball.dx = 10;
+            } else if (e.key == "a") {
+                ball.dx = -10;
+            }
+        });
+    }
+
+    function draw() {
+        platforms.forEach(function (platform) {
+            platform.draw();
+        });
+        ball.draw();
+    }
+
+    function update() {
+        ball.update(platforms);
+
+    }
+
+    function main() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+
+        get_events();
+        update();
+        draw();
+
+        requestAnimationFrame(main);
+    }
+
+    main();
+
+</script>
+
+</html>
