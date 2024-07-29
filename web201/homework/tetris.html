@@ -11,6 +11,10 @@
             font-family: sans-serif;
         }
 
+        h1 {
+            margin-top: 10px;
+        }
+
         canvas#canvas {
             border: solid;
         }
@@ -46,6 +50,32 @@
         canvas {
             position: absolute;
         }
+
+        input {
+            display: inline-block;
+        }
+
+        div#container3 {
+            border: solid 2px;
+            text-align: left;
+            display: inline-block;
+            padding: 10px;
+            vertical-align: top;
+            position: relative;
+            top: 150px;
+            margin-left: -100px;
+        }
+
+        div#container4 {
+            border: solid 2px;
+            text-align: left;
+            display: inline-block;
+            padding: 10px;
+            vertical-align: top;
+            position: relative;
+            top: 300px;
+            margin-left: -280px;
+        }
     </style>
 </head>
 
@@ -58,11 +88,17 @@
                 <canvas id="background" width="300" height="600"></canvas>
                 <canvas id="canvas" width="300" height="600"></canvas>
             </div>
-            <p>Controls: Up, Left, Down, Right arrow keys.</p>
-            <p>Do not hold the keys, this will cause lag!</p>
         </div>
         <label for="score_label">Score: </label>
         <span id="score">0</span>
+    </div>
+    <div id="container3">
+        <p>Choose background image</p>
+        <input type="file">
+    </div>
+    <div id="container4">
+        <p>Controls: Up, Left, Down, Right arrow keys.</p>
+        <p>Do not hold the keys, this will cause lag!</p>
     </div>
     
 </body>
