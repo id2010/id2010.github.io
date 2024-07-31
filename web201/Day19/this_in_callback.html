@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this. in callback</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Spritesheets</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    function Sheet() {  // If your function has the "this" keyword, it becomes a contructor
+        this.img = new Image();
+
+        let that = this;
+        
+        this.img.addEventListener("load", function(e) {
+            screen.drawImage(that.img, 0, 0)
+        });
+    }
+
+    this.sheet = new Sheet();
+</script>
+
+</html>

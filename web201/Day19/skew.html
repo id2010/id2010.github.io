@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skew</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Skew</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    screen.rect(100, 100, 300, 200);
+    screen.fillStyle = "rgba(255, 0, 0, 0.5)";
+    screen.fill();
+    screen.closePath();
+    screen.beginPath();
+    screen.transform(1, 0, 0.5, 1, 0, 0);
+    screen.rect(100, 100, 300, 200);
+    screen.fillStyle = "rgba(0, 0, 255, 0.5)";
+    screen.fill();
+
+    /*
+    a  Horizontal Scale
+    b  Vertical Skew
+    c  
+    */
+</script>
+
+</html>

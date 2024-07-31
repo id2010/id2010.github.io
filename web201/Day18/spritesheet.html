@@ -26,6 +26,21 @@
     let canvas = document.querySelector("#canvas");
     let screen = canvas.getContext("2d");
 
+    let lengths = [
+        7, 7, 7, 7,
+        8, 8, 8, 8,
+        9, 9, 9, 9,
+        6, 6, 6, 6,
+        13, 13, 13, 13,
+        6, 6,
+        4, 4, 4, 4,
+        5, 5, 5, 5,
+        6, 6, 6, 6,
+        8, 8, 8, 8,
+        13, 13, 13, 13,
+        6, 6, 6, 6
+    ];
+
     let spritesheet = new Image();
     spritesheet.src = "spritesheet_46rows_832x2944.png";
     
@@ -36,9 +51,10 @@
 
     let animations = [];
 
-    function Animation(row) {
+    function Animation(row, maxframe) {
         this.r = row;
         this.frame = 0;
+        this.maxframe = maxframe
         this.draw = function() {
             // Image, canvas_x, canvas_y, image_w, image_h, image_x, image_y, image_to_w, image_to_h // WAIT THIS IS WRONGGG!!11!1!
             screen.drawImage(spritesheet,
@@ -50,14 +66,14 @@
         }
         this.update = function() {
             this.frame++;
-            if (this.frame >= spritesheet_width) {
+            if (this.frame >= maxframe) {
                 this.frame = 0;
             }
         }
     }
 
     for (r=0; r<spritesheet_height; r++) {
-        animations.push(new Animation(r));
+        animations.push(new Animation(r, lengths[r]));
     }
 
 

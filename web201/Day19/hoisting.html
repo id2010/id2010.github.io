@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoisting</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    // hoisting: before you run code, 
+    // js engine move all declarations to the top of curr scope
+
+    /*
+    var a;
+    var b;
+    function c() {
+        console.log('hello');
+    }
+    */
+
+    c()
+
+    a = 100;
+    console.log(a);
+    var a;
+
+    // 
+    var b = function() {
+        console.log("hello");
+    }
+
+    function c() {  // declaration and defination, it will move to the top before execution
+        console.log("hello");
+    }
+</script>
+
+</html>

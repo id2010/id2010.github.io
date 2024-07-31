@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TITLE</h1>
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    screen.save();  // save curr canvas transformation into stack
+    screen.translate(200, 0);
+    screen.rect(0, 0, 100, 50);
+    screen.fill();
+    screen.lineWidth = "10";
+    screen.strokeStyle = "blue";
+    screen.strokeRect(0, 0, canvas.width, canvas.height);
+
+    screen.beginPath();
+    screen.restore();  // pop the transformation from the stack
+    screen.rect(0, 0, 100, 50);
+    screen.fillStyle = "red";
+    screen.fill();
+
+    // reset canvas
+    // means clear all contents and reset canvas
+    canvas.width = canvas.width;
+
+</script>
+
+</html>
