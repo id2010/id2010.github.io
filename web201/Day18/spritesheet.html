@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spritesheets</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas#canvas {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Spritesheets</h1>
+    <canvas id="canvas" width="850" height="3000"></canvas>
+</body>
+
+<script>
+    let canvas = document.querySelector("#canvas");
+    let screen = canvas.getContext("2d");
+
+    let spritesheet = new Image();
+    spritesheet.src = "spritesheet_46rows_832x2944.png";
+    
+    let spritesheet_width = 13;
+    let spritesheet_height = 31;
+    let f_w = 832 / spritesheet_width;
+    let f_h = 2944 / spritesheet_height;
+
+    let animations = [];
+
+    function Animation(row) {
+        this.r = row;
+        this.frame = 0;
+        this.draw = function() {
+            // Image, canvas_x, canvas_y, image_w, image_h, image_x, image_y, image_to_w, image_to_h
+            screen.drawImage(spritesheet,
+                this.frame * f_w, this.r * f_h,
+                f_w, f_h,
+                0, this.r * f_h,
+                f_w, f_h,
+            );
+        }
+        this.update = function() {
+            this.frame++;
+            if (this.frame >= spritesheet_width) {
+                this.frame = 0;
+            }
+        }
+    }
+
+    for (r=0; r<spritesheet_height; r++) {
+        animations.push(new Animation(r));
+    }
+
+
+    setInterval(function() {
+        screen.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw
+        animations.forEach(function(anim) {
+            anim.draw();
+        });
+
+        // Update
+        animations.forEach(function(anim) {
+            anim.update();
+        });
+
+    }, 100);
+
+
+</script>
+
+</html>
