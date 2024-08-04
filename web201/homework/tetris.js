@@ -61,6 +61,49 @@ function get_events() {
 function draw() {
     screen.clearRect(0, 0, canvas.width, canvas.height);
     tilemap.draw(screen);
+    //  //  //  //  //  //  //  //  //  //
+    screen.beginPath();
+    screen.strokeStyle = "black";
+    screen.lineWidth = 3;
+    screen.moveTo(300, 0);
+    screen.lineTo(300, canvas.height);
+    screen.stroke();
+    screen.closePath();
+    screen.beginPath();
+    screen.strokeStyle = "black";
+    screen.lineWidth = 2;
+    screen.moveTo(300, 45);
+    screen.lineTo(500, 45);
+    screen.stroke();
+    //  //  //  //  //  //  //  //  //   //
+    screen.fillStyle = "black";
+    screen.font = "24px Ariel";
+    screen.textAlign = "center";
+    screen.fillText("Next 5 blocks", 300 + 100, 30);
+    screen.closePath();
+    //  //  //  //  //  //  //  //  //  //
+    let ylevel = 0;
+    tilemap.tetrominos[0].next.forEach(function(shape) {
+        // console.log(shape);
+        ylevel++;
+        screen.beginPath();
+        let current = shape.patterns[0];
+        for (let r = 0; r < shape.size; r++) {
+            for (let c = 0; c < shape.size; c++) {
+                if (current[r][c] === 1) {
+                    screen.rect(340 + 10 + c * tilemap.tetrominos[0].tilesize, ylevel * tilemap.tetrominos[0].tilesize * 3 + r * tilemap.tetrominos[0].tilesize, tilemap.tetrominos[0].tilesize, tilemap.tetrominos[0].tilesize);
+                    screen.lineWidth = 4;
+                    screen.strokeStyle = shape.color;
+                    screen.stroke();
+                    screen.fillStyle = shape.fillcolor;
+                    screen.fill();
+                    screen.lineWidth = 1;
+                    screen.stroke();
+                }
+            }
+        }
+        screen.closePath();
+    });
 }
 
 function update() {
@@ -104,9 +147,9 @@ function main() {
         screen.fillStyle = "black";
         screen.font = "32px Ariel";
         screen.textAlign = "center";
-        screen.fillText("Game over!", canvas.width / 2, 100);
+        screen.fillText("Game over!", canvas.width / 2 - 100, 100);
         screen.font = "24px Ariel";
-        screen.fillText("Refresh to page to try again.", canvas.width / 2, 130);
+        screen.fillText("Refresh to page to try again.", canvas.width / 2 - 100, 130);
     }
 }
 

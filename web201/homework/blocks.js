@@ -1,7 +1,38 @@
 import { Z, O, I, J, L, S, T, all_tetriminos } from "./patterns.js";
 
+let bounce = new Audio("./bounce.mp3");
+bounce.volume = 0.2;
+
+export function bounce_sound() {
+    let bounce_clone = bounce.cloneNode();
+    bounce_clone.play();
+}
+
+let score = new Audio("./score.mp3");
+score.volume = 0.2;
+
+export function score_sound() {
+    let score_clone = score.cloneNode();
+    score_clone.play();
+}
+
+let place = new Audio("./place.wav");
+place.volume = 1;
+
+export function place_sound() {
+    let place_clone = place.cloneNode();
+    place_clone.play();
+}
+
 export class Tetromino {
     constructor(shape_, x, y) {
+        this.next = [];
+        for (let i = 0; i < 5; i++) {
+            let random_shape = Math.floor(Math.random(0, 6) * 6);
+            this.next.push({ ...all_tetriminos[random_shape] });
+        }
+        // console.log(this.next);
+
         this.reset();
         // this.x = x;
         // this.y = y - 1;
@@ -32,12 +63,19 @@ export class Tetromino {
         let repick = true;
 
         while (true) {
-            let random_shape = Math.floor(Math.random(0, 6) * 6);
+            // let random_shape = Math.floor(Math.random(0, 6) * 6);
             // let random_shape = Math.floor(Math.random(0, 7) * 7);
             // console.log(all_tetriminos.length);
             // console.log(random_shape);
-            this.shape_ = { ...all_tetriminos[random_shape] };
+            // this.shape_ = { ...all_tetriminos[random_shape] };
             // this.shape_ = { ...all_tetriminos[0] };
+            let first = this.next.shift();
+            this.shape_ = first;
+            console.log(this.next);
+
+            let random_shape = Math.floor(Math.random(0, 6) * 6);
+            this.next.push({ ...all_tetriminos[random_shape] });
+
             this.reset_shape();
 
             repick = true;
@@ -58,6 +96,7 @@ export class Tetromino {
             }
             break;
         }
+        console.log(this.next)
     }
 
     reset_phase() {
@@ -160,6 +199,7 @@ export class Tetromino {
                         this.y--;
                         this.dead = true;
                         break_all = true;
+                        place_sound();
                         break;
                     } else if (cc < 0) {
                         this.x++;
@@ -187,6 +227,7 @@ export class Tetromino {
                             this.y--;
                             this.reset_phase();
                             this.dead = true;
+                            place_sound();
                             return;
                         }
                     }
@@ -321,6 +362,7 @@ export let tilemap = {
             if (all_1s) {
                 // score
                 score_point = true;
+                score_sound();
                 for (let rr = r; rr >= 1; rr--) {
                     this.squares[rr] = this.squares[rr - 1];
                 }
