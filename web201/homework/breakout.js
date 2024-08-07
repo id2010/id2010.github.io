@@ -19,6 +19,7 @@ let points = 0;
 let level = 1 - 1;
 let won = false;
 let lives = 3 - 1;
+let colors = [["white", "gray", 1], ["lime", "green", 2], ["lightblue", "blue", 3], ["hotpink", "red", 4]];
 
 let fps = 0;
 let dt = 0;
@@ -65,8 +66,15 @@ function setup() {
     lives++;
     let brick_width = (canvas.width / amount);
     for (let i = 0; i < level; i++) {
+        let ind = i;
+        ind = level - ind - 1;
+        if (ind > 3) {
+            ind = 3;
+        }
+        let color = colors[ind];
+
         for (let j = 0; j < amount; j++) {
-            bricks.push(new objects.Brick(5 + brick_width * j, 40 + 50 * i));
+            bricks.push(new objects.Brick(5 + brick_width * j, 40 + 50 * i, color[0], color[1], color[2]));
         }
     }
 
@@ -77,7 +85,15 @@ function setup() {
     ball = {
         ...objects.ball_copy
     }
-
+    if (level >= 12) {
+        ball.damage = 4;
+    }
+    else if (level >= 9) {
+        ball.damage = 3;
+    }
+    else if (level >= 6) {
+        ball.damage = 2;
+    }
 }
 function get_events() {
     window.addEventListener("keyup", function (e) {
@@ -107,9 +123,15 @@ function draw() {
     // 
     // I should make this draw in a circle on 0 0 to the width instead of a rect
     screen.beginPath();
+    let ind = ball.damage - 1;
+    if (ind > 3) {
+        ind = 3
+    }
+    let color = colors[ind];
+
     let rg = screen.createRadialGradient(ball.x, ball.y, ball.radius, ball.x, ball.y, ball.radius * 2);
-    rg.addColorStop(0, "white");
-    rg.addColorStop(0.01, "white");
+    rg.addColorStop(0, color[0]);
+    rg.addColorStop(0.01, color[1]);
     rg.addColorStop(1, "transparent");
     rg.addColorStop(1, "transparent");
     screen.fillStyle = rg;
@@ -137,8 +159,8 @@ function draw() {
         // New draw bricks
         screen.beginPath();
         let g = screen.createLinearGradient(brick.x, brick.y, brick.x + brick.w, brick.y + brick.h);
-        g.addColorStop(0, "white");
-        g.addColorStop(1, "gray");
+        g.addColorStop(0, brick.color1);
+        g.addColorStop(1, brick.color2);
         screen.fillStyle = g;
         screen.rect(brick.x, brick.y, brick.w, brick.h);
         screen.fill();

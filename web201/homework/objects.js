@@ -1,3 +1,6 @@
+
+let colors = [["white", "gray", 1], ["lime", "green", 2], ["lightblue", "blue", 3], ["hotpink", "red", 4]];
+
 function rectPointCollision(point, rect) {
     if (point[0] >= rect[0] && point[0] <= rect[0] + rect[2] && point[1] >= rect[1] && point[1] <= rect[1] + rect[3]) {
         return true;
@@ -32,7 +35,10 @@ export function bounce_sound() {
 
 export class Brick {
 
-    constructor(x, y) {
+    constructor(x, y, c1, c2, health) {
+        this.health = health;
+        this.color1 = c1;
+        this.color2 = c2;
         this.x = x;
         this.y = y;
         this.w = 50;
@@ -53,6 +59,9 @@ export class Brick {
     update() {
         this.right = this.x + this.w;
         this.bottom = this.y + this.h;
+        if (this.health <= 0) {
+            this.die = true;
+        }
     }
 }
 
@@ -105,6 +114,7 @@ let ball = {
     lose_life: false,
     signal_pause: false,
     add_point: false,
+    damage: 1,
     update: function (dt, paddle, bricks) {
         this.lose_life = false;
         this.add_point = false;
@@ -134,7 +144,24 @@ let ball = {
             for (let brick of bricks) {
                 if (circleRectCollision([this.x, this.y, this.radius], [brick.x, brick.y, brick.w, brick.h])) {
                     bounce_sound();
-                    brick.die = true;
+                    brick.health -= this.damage;
+                    if (brick.health == 1) {
+                        brick.color1 = colors[0][0];
+                        brick.color2 = colors[0][1];
+                    }
+                    else if (brick.health == 2) {
+                        brick.color1 = colors[1][0];
+                        brick.color2 = colors[1][1];
+                    }
+                    else if (brick.health == 3) {
+                        brick.color1 = colors[2][0];
+                        brick.color2 = colors[2][1];
+                    }
+                    else if (brick.health == 4) {
+                        brick.color1 = colors[3][0];
+                        brick.color2 = colors[3][1];
+                    }  // if someone want to add more
+
                     console.log("brick destroyed");
                     this.add_point = true;
 
